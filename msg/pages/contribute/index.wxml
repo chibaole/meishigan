@@ -1,0 +1,44 @@
+<!-- 
+<loading hidden="{{loading}}">
+  页面初始化中...
+</loading> -->
+
+<view class='page'>
+<form bindsubmit="sendInfo">
+
+  <view class='selLabel'>
+    <text>{{mytheme}}</text>
+     <view class='confirm' bindtap='confirm'> <image mode='aspectFit' src="../../images/drop-down.png"></image> </view> 
+  </view>
+
+ <view class='theme_box' wx:if='{{show}}'>
+          <radio-group class="radio-group" bindchange="radioChange" name="question">
+            <label class="radio" wx:for="{{theme}}">
+              <radio value="{{item.theme}}" checked="{{item.checked}}" />
+              <text>{{item.theme}}</text>
+            </label>
+          </radio-group>
+
+  </view>
+  <view class='art-box'>
+    <view class="addConent">
+      <textarea placeholder='' name='content'></textarea>
+    </view>
+  </view>
+
+  <view class='imagesBox'>
+     <view  class="image_box" wx:for="{{srclist}}" > 
+
+      <view class="picPre">
+        <image src="{{item}}" mode="aspectFill" ></image>
+         <view bindtap="clearPic" data-src='{{item}}'></view> 
+      </view>
+    </view>
+    <view class="add_pic" wx-if="{{max}}">
+       <view bindtap="chosePic">
+       </view> 
+    </view>
+  </view>
+  <button loading="{{isLoading}}" hover-start-time="200" disabled="{{isdisabled}}" formType="submit">发布投稿</button>
+</form>
+</view>

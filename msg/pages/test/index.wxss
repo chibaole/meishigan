@@ -1,0 +1,310 @@
+/* index.wxss */
+
+.page {
+  background: #f6f6f6;
+  color: #4a4a4a;
+  /* margin-bottom: 120rpx; */
+}
+
+view {
+  font-family: PingFang;
+}
+
+.header {
+  background-image: url("http://oxnbz75b8.bkt.clouddn.com/head_background.png");
+  /* border: 1rpx solid #000; *//* height: 500rpx; *//* height: 276rpx; */
+  padding-top: 40rpx;
+}
+
+.item-container {
+  /* background: #e0502c;   */
+  width: 750rpx;
+  font-size: 32rpx;
+  color: #e0502c;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.logo {
+  height: 90rpx;
+  width: 360rpx;
+  /* border: 1rpx solid #000; */
+  margin: 0 auto;
+  opacity: 0.8;
+  background: #d8d8d8;
+}
+
+.logo image {
+  height: 90rpx;
+  width: 360rpx;
+}
+
+.item-container .item {
+  margin: 24rpx;
+  width: 290rpx;
+  height: 90rpx;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2rpx solid #fff;
+}
+
+.item .item-text {
+  /* border: 1px solid #000;  */
+  margin-top: 20rpx;
+  font-family: PingFangSC-Medium;
+  font-size: 28rpx;
+  color: #fff;
+  letter-spacing: 3.5rpx;
+}
+
+.item-container .item text {
+  display: block;
+}
+
+/*-----  */
+
+.title-bar image {
+  height: 40rpx;
+  width: 40rpx;
+  vertical-align: middle;
+  /* border: 1px solid #000; */
+  margin-right: 50rpx;
+  margin-bottom: 5rpx;
+  margin-left: 40rpx;
+}
+
+.title-bar {
+  background: #fff;
+  height: 120rpx;
+  width: 712rpx;
+  margin: 10rpx auto;
+  line-height: 120rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 30rpx;
+  color: #454553;
+  letter-spacing: 0.48rpx;
+}
+
+/*---------  */
+
+.art {
+  background: #fff;
+  border: 1rpx solid #f4dbd4;
+  font-size: 28rpx;
+  width: 712rpx;
+  margin: 4rpx auto 0;
+}
+
+.card_pic {
+  /* width: 712rpx; */
+  height: 380rpx;
+  /* width: 800rpx; */
+  margin: 0 auto;
+  /* border: 1rpx solid #000;    *//*  */
+}
+
+.art-title {
+  color: #353541;
+  font-size: 32rpx;
+  margin-left: 38rpx;
+  margin-bottom: 30rpx;
+}
+
+.art-text {
+  margin: 0 38rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  color: #747474;
+}
+
+.show_all {
+  margin: 0 38rpx;
+  color: #747474;
+}
+
+.showall {
+  float: right;
+  margin-right: 60rpx;
+}
+
+.clear {
+  clear: both;
+}
+
+.tools {
+  margin-top: 44rpx;
+  margin-bottom: 2rpx;
+}
+
+.new_authuor {
+  width: 40%;
+  height: 60rpx;
+  display: inline-block;
+  /* border:1rpx solid #000;  */
+  margin-left: 40rpx;
+  margin-bottom: 24rpx;
+}
+
+.new_authuor image {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+  /* border-bottom: 1rpx solid red; */
+  vertical-align: middle;
+  /* 一群傻逼 */
+}
+
+.new_authuor text {
+  font-size: 28rpx;
+  color: #747474;
+}
+
+.share, .i_love {
+  background: #fff;
+  height: 60rpx;
+  display: inline-block;
+  width: 25%;
+  border-radius: 0;
+  margin-bottom: -15rpx;
+  /* border: 1rpx solid red; */
+}
+
+.i_love {
+  margin-left: 60rpx;
+  /* border: 1rpx solid red; */
+}
+
+.share {
+  width: 10%;
+}
+
+button::after {
+  border: 0 none;
+}
+
+.share image, .i_love image {
+  display: inline-block;
+  width: 36rpx;
+  height: 36rpx;
+  margin-bottom: 30rpx;
+  /* text-align: center; */
+  vertical-align: middle;
+  /* border: 1rpx solid #000;  */
+}
+
+.image0 {
+  display: inline-block;
+  width: 36rpx;
+  height: 36rpx;
+  margin-bottom: 30rpx;
+  /* text-align: center; */
+  vertical-align: middle;
+  background: url(http://oxnbz75b8.bkt.clouddn.com/praise_gray@3x.png) no-repeat;
+  background-size: 36rpx 36rpx;
+}
+
+.image1 {
+  display: inline-block;
+  width: 36rpx;
+  height: 36rpx;
+  margin-bottom: 30rpx;
+  /* text-align: center; */
+  vertical-align: middle;
+  background: url(http://oxnbz75b8.bkt.clouddn.com/praise_orange@3x.png) no-repeat;
+  background-size: 36rpx 36rpx;
+}
+
+.likedNum {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.likedNum text {
+  display: inline-block;
+  /* margin-bottom: 10rpx;  *//* border: 1px solid red;   */
+  font-size: 28rpx;
+  /* width: 30rpx; */
+  height: 30rpx;
+  line-height: 50rpx;
+  position: absolute;
+  top: 10rpx;
+}
+
+button::after {
+  border: 0 none;
+}
+
+/*-------  */
+
+.art-case {
+  background: #fff;
+  border: 2rpx solid #f4dbd4;
+  font-size: 28rpx;
+  width: 712rpx;
+  margin: 18rpx auto 0;
+  padding-bottom: 26rpx;
+}
+
+.art-case-text {
+  margin: 30rpx 38rpx 22rpx;
+}
+
+.case-name {
+  margin-left: 38rpx;
+  width: 50%;
+  /* border: 1rpx solid #000; */
+}
+
+.case-name text {
+  border-bottom: 2rpx #e0502c dashed;
+}
+
+.case-name image {
+  width: 38rpx;
+  height: 38rpx;
+  vertical-align: middle;
+  margin-left: 8rpx;
+}
+
+.case-img {
+  width: 414rpx;
+  height: 240rpx;
+  border-radius: 4rpx;
+  margin-left: 38rpx;
+}
+
+.showMore {
+  font-size: 22rpx;
+  text-align: center;
+  color: #9b9b9b;
+  width: 100rpx;
+  margin: 0 auto;
+  font-family: PingFangSC-Regular;
+}
+
+.line-title-box {
+  margin-bottom: 20rpx;
+}
+
+.line-title-box .title-bar {
+  background-image: linear-gradient(-180deg, #fdf7f5 0%, #f9ece8 100%);
+  border: 1px solid #f4dbd4;
+  border-radius: 6rpx;
+}
+
+/*----card的图片*/
+
+.card_pic {
+  width: 710rpx;
+  /* margin: 0 auto;  *//* border: 1rpx solid #000; */
+}
+
+/* .foot{
+  margin-top: 20rpx;
+} */

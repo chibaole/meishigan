@@ -1,0 +1,26 @@
+/* index.wxss */
+view{
+  background: #ccc;
+  text-align: center;
+}
+
+.item1,.item0{
+      height: 384rpx;
+      line-height: 384rpx;
+      
+}
+.item2{
+  height: 278rpx;
+  line-height: 278rpx;
+}
+
+.item0{
+  margin-top: 24rpx;
+}
+.item1{
+  margin-top: 16rpx;
+
+}
+.item2{
+  margin-top: 16rpx;
+}

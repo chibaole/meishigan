@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<view>测试生成图片</view>
+<view>月色依旧 往事渐渺 不可追述</view>
+
+ <canvas canvas-id='build_img'></canvas> 

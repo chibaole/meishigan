@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class='page'>
+  <view class='header'>
+    <view class='circle'></view>
+    <view class='line'></view>
+    <view class='procress'>步骤2</view>
+  </view>
+  <view class='content'>
+    <form bindsubmit='formSubmit'>
+      
+          <view class='sel_qu'>1. 选择一个你最想回答的问题</view>
+          <radio-group class="radio-group" bindchange="radioChange" name="question">
+            <label class="radio" wx:for="{{items}}">
+              <radio value="{{item.question}}" checked="{{item.checked}}" />
+              <text>{{item.question}}</text>
+            </label>
+          </radio-group>
+        
+
+
+          <button formType="submit"><image src='../../../images/icon/next page@3x.png'></image></button> 
+    
+    </form>
+  </view>
+</view>

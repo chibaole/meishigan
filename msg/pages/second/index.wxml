@@ -1,0 +1,21 @@
+<!--index.wxml-->
+<view class='page'>
+
+    <view  class='title' >没事干研究院</view>
+    <view class='introduction' > 
+        <text>
+            「没事干研究院」是艾格吃饱了指导下
+            的一个研究小分队 ，专门研究吃这件小
+            事。研究院除了小编们还有走读生，走
+            读生均选拔自艾格吃饱了的读者，是一
+            群来自五湖四海、身怀绝技的吃货。
+        </text>
+    </view>
+
+    <view class='some-text'> 
+          <text>💡</text>
+        <text>十万个好奇因子+认真态度</text>
+        <text>除开好好生活，我们别无所求</text> 
+    </view>
+      <view class='join'>求加入</view>
+</view>

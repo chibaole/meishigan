@@ -1,0 +1,119 @@
+/* index.wxss */
+
+.page {
+  background: #f6f6f6;
+  /* height: 1210rpx; */
+}
+
+.header {
+  height: 144rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 28rpx;
+  color: #454553;
+  position: relative;
+}
+
+.circle {
+  width: 38rpx;
+  height: 38rpx;
+  border-radius: 50%;
+  background: #de4f2b;
+  /* margin-left: 50%; */
+  position: absolute;
+  top: 51.4rpx;
+  right: 360rpx;
+}
+
+.line {
+  width: 750rpx;
+  height: 6rpx;
+  background: #de4f2b;
+  position: absolute;
+  top: 67.4rpx;
+  right: 0rpx;
+}
+
+.procress {
+  position: absolute;
+  top: 100rpx;
+  right: 334rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 28rpx;
+  color: #454553;
+}
+
+.content {
+  /* border: 1rpx solid #000;  */
+  font-family: PingFangSC-Semibold;
+  font-size: 30rpx;
+  color: #454553;
+  letter-spacing: -0.48rpx;
+  line-height: 40rpx;
+}
+
+form {
+  display: block;
+  /* border: 1rpx solid #000; *//* height: 200rpx; */
+}
+
+.sel_qu {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #878787;
+  line-height: 22px;
+  margin-top: 36rpx;
+  margin-bottom: 28rpx;
+  margin-left: 40rpx;
+  /* border: 1rpx solid blue;   */
+}
+
+radio-group {
+  /* border: 1rpx solid red; */
+  width: 710rpx;
+  height: 120rpx;
+  margin: 0 auto;
+  background: #fff;
+}
+
+label {
+  /* border: 1rpx solid blue; */
+  margin-left: 40rpx;
+  line-height: 120rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 30rpx;
+  color: #454553;
+  letter-spacing: -0.48rpx;
+}
+
+radio {
+  /* border: 1rpx solid #000; */
+}
+
+textarea {
+  width: 630rpx;
+  height: 442rpx;
+  margin: 20rpx auto;
+  background: #fff;
+
+  font-family: PingFangSC-Light;
+font-size: 28rpx;
+color: #454553;
+letter-spacing: 0;
+line-height: 40rpx;
+padding: 40rpx 40rpx 60rpx 40rpx;
+}
+
+button {
+  display: block;
+  width: 116rpx;
+  height: 116rpx;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  margin: 144rpx auto 0;
+}
+
+button image {
+  width: 116rpx;
+  height: 116rpx;
+}

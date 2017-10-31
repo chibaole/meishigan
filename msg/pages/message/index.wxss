@@ -1,0 +1,31 @@
+/* index.wxss */
+
+.message{
+  height: 136rpx;
+  border-bottom: 2rpx solid #b5b5b5;
+}
+.message image{
+  width: 78rpx;height: 78rpx;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 24rpx;
+  margin-top: 29rpx;
+  vertical-align: middle
+}
+
+.message .message-text{
+  display: inline-block;
+  /* border:1px solid #000; */
+  width: 75%;
+  font-size:24rpx; 
+  margin-left: 24rpx;
+  vertical-align: middle;
+  margin-top: 29rpx;
+}
+.message-text text{
+  display: block;
+}
+
+.time{
+  color: #b5b5b5;
+}

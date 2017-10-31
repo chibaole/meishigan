@@ -1,0 +1,65 @@
+<!-- index.wxml -->
+
+<view class='page'>
+  <view class='header'>
+    <view class='circle'></view>
+    <view class='line'></view>
+    <view class='procress'>步骤 4</view>
+  </view>
+
+<form bindsubmit="formSubmit">
+  <view class='sel_qu'>3. 分享一下你难忘的美食体验吧(选填)</view>
+
+  <!-- <view class='selLabel'>
+    <text>选择所属主题</text>
+    <text class='confirm' bindtap='confirm'>{{keyword}}</text>
+  </view> -->
+    <view class='selLabel'>
+    <text>{{mytheme}}</text>
+     <view class='confirm' bindtap='confirm'> <image mode='aspectFit' src="../../../images/drop-down.png"></image> </view> 
+  </view>
+  <view class='theme_box' wx:if='{{show}}'>
+          <radio-group class="radio-group" bindchange="radioChange" name="question">
+            <label class="radio" wx:for="{{theme}}">
+              <radio value="{{item.theme}}" checked="{{item.checked}}" />
+              <text>{{item.theme}}</text>
+            </label>
+          </radio-group>
+
+  </view>
+
+  <view class='art-box'>
+    <view class="addConent">
+      <textarea placeholder='' name='content'  maxlength='-1'></textarea>
+    </view>
+  </view>
+
+  <!-- <view class='imagesBox'>
+    <view wx:if="{{srclist}}" class="image_box" wx:for="{{srclist}}" >
+      <view class="picPre">
+        <image src="{{item}}" mode="aspectFill" ></image>
+         <view bindtap="clearPic" data-src='{{item}}'></view> 
+      </view>
+    </view>
+
+    <view class="add_pic" wx-if="{{max}}">
+       <view bindtap="chosePic"></view> 
+    </view>
+  </view> -->
+
+  <view class='imagesBox'>
+     <view  class="image_box" wx:for="{{srclist}}" > 
+
+      <view class="picPre">
+        <image src="{{item}}" mode="aspectFill" ></image>
+         <view bindtap="clearPic" data-src='{{item}}'></view> 
+      </view>
+    </view>
+    <view class="add_pic" wx-if="{{max}}">
+       <view bindtap="chosePic">
+       </view> 
+    </view>
+  </view>
+  <button loading="{{isLoading}}" hover-start-time="200" disabled="{{isdisabled}}" formType="submit">立即提交</button>
+</form>
+</view>

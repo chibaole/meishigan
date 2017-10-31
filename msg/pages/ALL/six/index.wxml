@@ -1,0 +1,12 @@
+<!--index.wxml-->
+<view class='item0'>
+      <navigator url='../contribute/index' >投稿</navigator>
+</view> 
+
+<view class='item1'>
+      <navigator url='./one/index' >关于没事干研究院/成为研究员</navigator>
+</view> 
+
+<view class='item2'>
+      <navigator url='../xx/index' >2017年零食榜单</navigator>
+</view> 

@@ -1,0 +1,6 @@
+<!--index.wxml-->
+<view class='foot'>
+      <navigator class='tabbar tabbar1' url=''> <image src='../../images/icon/home_gray@3x.png'></image></navigator>
+      <navigator class='tabbar tabbar2'> <image src='../../images/icon/individual_gray@3x.png'></image></navigator>
+      <navigator class='tabbar tabbar3'> <image src='../../images/icon/explore_gray@3x.png'></image></navigator>
+</view>

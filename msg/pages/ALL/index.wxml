@@ -1,0 +1,29 @@
+<!--index.wxml-->
+    <view class='item0' bindtap='openurl' data-url='../contribute/index'>
+          <!-- <navigator url='../contribute/index' >投稿</navigator> -->
+          <view class='item'>
+              <view>投稿</view>
+              <view class='mintext' >把美食分享给我们</view>
+          </view>
+          
+    </view> 
+
+    <view class='item1' bindtap='openurl' data-url="./two/index">
+            <view class='item' >
+              <view>关于</view>
+              <view class='mintext'>了解我们欢迎加入</view>
+            </view>
+    </view> 
+
+    <view class='item2' bindtap='openurl' data-url='没有'>
+          <view class='item' >
+              <view>榜单</view>
+              <view class='mintext'>2017年零食榜单总结</view>
+            </view>
+    </view> 
+
+<view class='foot'>
+      <view class='tabbar tabbar1' data-url='../../pages/test/index' bindtap='gotourl'> <image src='../../images/icon/home_gray@3x.png'></image></view>
+      <view class='tabbar tabbar2'  data-url='../ALL/index' bindtap='gotourl'> <image src='../../images/icon/explore_gray@3x.png'></image></view>
+      <view class='tabbar tabbar3' data-url='../isme/index' bindtap='gotourl'> <image src='../../images/icon/individual_gray@3x.png'></image></view>
+</view>

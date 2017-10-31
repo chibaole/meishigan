@@ -1,0 +1,105 @@
+.page{
+  background: #f6f6f6;
+  /* height: 1210rpx; */
+}
+.header{
+height: 144rpx;
+font-family: PingFangSC-Semibold;
+font-size: 28rpx;
+color: #454553;
+position: relative;
+
+}
+.circle{
+  width: 38rpx;
+  height: 38rpx;
+  border-radius: 50%;
+background: #DE4F2B;
+/* margin-left: 50%; */
+position: absolute;
+top:51.4rpx;
+right: 360rpx;
+
+}
+.line{
+  width: 750rpx;
+  height: 6rpx;
+background: #DE4F2B;
+position: absolute;
+top:67.4rpx;
+right: 0rpx;
+}
+.procress{
+
+position: absolute;
+top:100rpx;
+right: 334rpx;
+
+font-family: PingFangSC-Semibold;
+font-size: 28rpx;
+color: #454553;
+}
+/*上面是头部样式  */
+
+.content{
+  /* border: 1rpx solid #000; */
+  font-family: PingFangSC-Semibold;
+font-size: 30rpx;
+color: #454553;
+letter-spacing: -0.48rpx;
+line-height: 40rpx;
+}
+.sel_qu{
+font-family: PingFangSC-Regular;
+font-size: 28rpx;
+color: #878787;
+line-height: 22px;
+margin-top: 36rpx;
+  margin-bottom: 28rpx;
+  margin-left: 40rpx;
+
+}
+label{
+  display: block; 
+  height: 120rpx;
+  width: 710rpx;
+  margin: 0  auto 20rpx;
+  background: #fff;
+   /* border: 1rpx solid blue;  */
+  position: relative;
+}
+radio{
+  margin-right: 10rpx;
+  position: absolute;
+  top:50%;
+  left: 40rpx;
+  margin-top: -25rpx;
+  /* border: 6rpx solid #DE4F2B; */
+  /* border-radius: 50% */
+}
+text{
+  font-family: PingFangSC-Semibold;
+
+  display: inline-block;
+  width: 590rpx;
+  margin-left: 110rpx;
+  line-height: 120rpx;
+  /* border: 1rpx solid #000; */
+
+}
+
+
+
+button {
+  display: block;
+  width: 116rpx;
+  height: 116rpx;
+  border-radius: 50%;
+  padding: 0;
+  margin: 144rpx auto 0;
+}
+
+button image {
+  width: 116rpx;
+  height: 116rpx;
+}

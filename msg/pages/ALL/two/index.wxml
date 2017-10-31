@@ -1,0 +1,30 @@
+<!--index.wxml-->
+<view class='page'>
+<view class='header'>
+      <view class='circle'></view>
+      <view class='line'></view>
+      <view class='procress'>步骤1</view>
+</view>
+<view class='content'>
+    <form  bindsubmit="formSubmit">
+          <view class='name'>你的名字</view>
+          <input name="youname" type='text' class='name_input' ></input>
+
+          <view  class='phonenum'>你的手机号</view>
+          <input name="phonenum" type='number' class='phone_input' ></input>
+
+          <view class='othernum'>你的社交账号(体现你吃货的账号)</view>
+          <input name="othernum" type='text' class='other_inpiut' ></input>
+
+          <view class='gender'>你的性别</view>
+          <radio-group class="radio-group" bindchange="radioChange">
+            <label class="radio" wx:for="{{gender}}">
+              <radio value="{{item}}" checked="" name="gender"/>{{item}}
+            </label>
+          </radio-group>
+          <checkbox value="{{hasbuy}}" bindtap="checkbox" checked="{{hasbuy}}"  />请确认你已购买没事干研究院零食包
+          <button formType="submit"><image src='../../../images/icon/next page@3x.png'></image></button> 
+    </form>
+</view>
+<!-- <image src='../../../images/icon/next page@3x.png'></image> -->
+</view>

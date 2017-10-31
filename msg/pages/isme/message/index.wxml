@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<!-- <view wx:for="{{messages}}">
+  <view class='_message'>
+    <image src='{{userInfo.avatarUrl}}'></image>
+    <view class='_message-text'>
+      <text>{{item.content}}</text>
+      <text class='_time'>{{item.time}}</text>
+    </view>
+  </view>
+</view> -->
+
+<view class='page'>
+<view class="message_item" wx:for="{{messages}}">
+      <image src='{{userInfo.avatarUrl}}'></image>
+      <view class='messagee_content'>
+            <text class='content'>{{item.content}}</text>
+            <text id='time'>{{item.time}}</text>
+      </view>
+</view>
+</view>

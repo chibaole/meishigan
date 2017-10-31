@@ -1,0 +1,31 @@
+<!--index.wxml-->
+<view class='item0'>
+  <view class='title' >关于没事干研究院</view>
+  <view class='mintext'>
+    这是「艾格吃饱了」指导下的一个研究小分队 ，专门研究吃这件小事。研究院除了小编们还有走读生,走读生均选拔自艾格吃饱了的读者，是一群来自五湖四海、身怀绝技的吃货。
+  </view>
+  <view class='tips'>
+    <view class='tips1' >十万个好奇因子+认真态度</view>
+    <view class='tips2'>除开好好生活，我们别无所求</view> 
+  </view>
+</view>
+
+<view class='item1'>
+  <view class='title'>没事干研究员有什么特权？</view>
+  <view>
+    <text>1.参与「艾格吃饱了」产品研发，下一款的热卖单品研发人可能就是你。</text>
+    <text>2.享受折扣价小样尝鲜，一年至少 5 次免费（需付邮，并认真填写反馈）。</text>
+    <text>3.加入没事干研究院微信群，分享你所知道的，探索你所不知道的。</text>
+    <text>4.参与每周一次的主题讨论会，精彩分享将被采编进每周的研究院群周报。</text>
+    <text>5.不定时美食相关的专项研究项目。</text>
+  </view>
+</view>
+
+<view class='item2'>
+  <view class='title'>如何加入</view>
+  <view class='mintext'>
+    你需要购买指定产品，拿到附带的准考证、试吃包及口味测试卡等，填写入学考试的几个问题，等待审核。
+  </view>
+</view>
+<!-- <button wx:if="{{allready}}" bindtap='gotest'>入学考试</button> -->
+<button bindtap='gotest'>入学考试</button>

@@ -1,0 +1,111 @@
+/* index.wxss */
+
+.page{
+  background: #f6f6f6;
+  /* border: 1rpx solid #000; */
+  height: 1210rpx;
+  color: #454553
+}
+
+.header{
+height: 144rpx;
+font-family: PingFangSC-Semibold;
+font-size: 28rpx;
+color: #454553;
+position: relative;
+
+}
+.circle{
+  width: 38rpx;
+  height: 38rpx;
+  border-radius: 50%;
+background: #DE4F2B;
+position: absolute;
+top:32rpx;
+right: 356rpx;
+
+}
+.line{
+  width: 356rpx;
+  height: 6rpx;
+background: #DE4F2B;
+position: absolute;
+top:48rpx;
+right: 0rpx;
+}
+.procress{
+
+position: absolute;
+top:81rpx;
+right: 335rpx;
+}
+.content{
+  background: #fff;
+  width: 710rpx;height: 820rpx;
+  margin: 0 auto;
+        /* border: 1rpx solid #000;     */
+
+}
+form{
+  display: block;
+       border: 1rpx solid #fff;  
+         
+  font-size: 28rpx;
+  width: 710rpx;height: 820rpx;
+  /* margin: 100rpx auto; */
+  margin-top: 6rpx;
+}
+input{
+  
+width: 630rpx;
+height: 132rpx;
+margin-left: 40rpx;
+
+border-bottom: 1rpx solid #e3e9ec;
+font-family: PingFangSC-Regular;
+font-size: 32rpx;
+color: #454553;
+line-height: 132rpx;
+}
+
+.phonenum , .othernum,.gender,.name{
+  margin-top: 40rpx;
+  margin-left: 40rpx;
+  font-family: PingFangSC-Light;
+font-size: 14px;
+color: #878787;
+line-height: 14px;
+}
+/* .name{
+  margin-top: 50rpx;
+  border: 1rpx solid #000;
+} */
+.gender{
+  margin-bottom: 28rpx;
+}
+radio-group{
+  margin-bottom: 48rpx;
+  margin-left: 40rpx;
+  margin-top: 28rpx;
+}
+adio{
+  margin-right: 40rpx;
+}
+checkbox{
+  /* border: 1rpx solid #000; */
+  width: 36rpx;height: 36rpx;
+  margin-right: 20rpx;
+  margin-top: 44rpx;
+}
+button{
+  display: block;
+   width: 116rpx;height: 116rpx; 
+   border-radius:50%; 
+  /* border: 1rpx solid #000;  */
+  padding: 0;margin: 0;
+  margin: 40rpx auto 0;
+  /* margin: 140rpx auto auto; */
+} 
+button image{
+     width: 116rpx;height: 116rpx; 
+}

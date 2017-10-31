@@ -1,0 +1,21 @@
+.foot{
+  height: 120rpx;
+  background: #FFFFFF;
+box-shadow: -3px -3px 10px 0 rgba(69,69,83,0.05);
+ border: 1rpx solid #000;
+ position: relative
+}
+
+.foot .tabbar{
+  display: inline-block;
+}
+.foot .tabbar image{
+  width: 52rpx;height: 52rpx;
+}
+
+.foot .tabbar2{
+  margin: 34rpx 175.5rpx;
+}
+.foot .tabbar1{
+  margin-left: 100rpx;
+}

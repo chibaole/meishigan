@@ -1,0 +1,92 @@
+/* index.wxss */
+.page{
+  background: #f6f6f6;
+   min-height: 1210rpx; 
+  /* width: 750rpx; */
+}
+/* view{
+  background: #fff;
+  text-align: center;
+  width: 710rpx;
+  margin: 0 auto;
+  position: relative;
+  border:1rpx  solid #f2f2f2;
+} */
+.item0,.item1,.item2{
+    background: #fff;
+  text-align: center;
+  width: 710rpx;
+  margin: 0 auto;
+  position: relative;
+  border:1rpx  solid #f2f2f2;
+}
+.item{
+  height: 150rpx;
+  /* position:absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -
+  margin-top: -75rpx; */
+  /* border: none; */
+  margin-top: 95rpx;
+  /* border: 1rpx solid #000; */
+
+}
+.item view{
+    border: none;
+    margin-bottom: 20rpx;
+    /* text-align: center */
+}
+
+.item1,.item0{
+      height: 340rpx;    
+}
+.item2{
+  height: 340rpx;
+}
+
+.item0{
+  margin-top: 24rpx;
+}
+.item1{
+  margin-top: 16rpx;
+
+}
+.item2{
+  margin-top: 16rpx;
+}
+
+.mintext{
+  border: none;
+  font-size: 24rpx;
+  color:#727272
+}
+
+
+/*每页的底部  */
+
+.foot{
+  height: 120rpx;
+  width: 100%;
+  background: #FFFFFF;
+box-shadow: -3px -3px 10px 0 rgba(69,69,83,0.05);
+ /* border: 1rpx solid #000; */
+ position: fixed;
+ bottom: 0rpx;
+  /* display: none  */
+
+}
+
+.foot .tabbar{
+  display: inline-block;
+}
+.foot .tabbar image{
+  width: 52rpx;height: 52rpx;
+}
+
+.foot .tabbar2{
+  margin: 34rpx 175.5rpx;
+}
+.foot .tabbar1{
+  margin-left: 100rpx;
+}

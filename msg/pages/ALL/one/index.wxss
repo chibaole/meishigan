@@ -1,0 +1,61 @@
+.item0 ,.item1,.item2{
+  font-size: 28rpx;
+  /* border:  1rpx solid #979797; */
+}
+.item0{
+  border-bottom: 1rpx solid #979797;
+  width: 640rpx;
+  margin: 0 auto;
+}
+.item0 .title{
+  /* border:  1rpx solid #979797; */
+  width: 224rpx;
+  margin: 92rpx auto 36rpx;
+}
+.item0 .mintext{
+  width: 490rpx;
+  margin: 0 auto 40rpx; 
+}
+
+.item0 .tips{
+  font-size:28rpx; 
+  width: 395rpx;
+  margin: 0 auto 64rpx;
+  /* border: 1rpx solid #000; */
+  text-align: center
+}
+/*----  */
+.item1{
+  margin: 72rpx auto;
+  width: 640rpx;
+  height: 480rpx;
+  border-bottom: 1rpx solid #979797;
+  padding-bottom: 120rpx;
+}
+.item1 .title{
+    /* border: 1rpx solid #979797; */
+    margin-bottom: 40rpx;
+}
+.item1 view text{
+  display: block;
+}
+
+.item2{
+  width: 640rpx;
+  height: 200rpx;
+  margin: 0 auto;
+}
+
+.item2 .title{
+      margin-bottom: 40rpx;
+}
+
+button{
+  height: 96rpx;
+  width: 268rpx;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 96rpx;
+  margin: 110rpx auto;
+  background: #D8D8D8;
+}

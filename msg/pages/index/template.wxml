@@ -1,0 +1,29 @@
+<template name='card'>
+<view class='art'>
+      <view class='art-title'>{{item.title}}</view>
+      <view class='art-text'>
+        {{item.brand}}
+      </view>
+      <block wx:if="{{item.case_name}}">
+        <view class='case-name'>
+          <text selectable='true'>{{item.case_name}}</text>
+          <image src='../../images/recover.png'  data-id='{{item.id}}' bindtap='clip'></image>
+        </view>
+      </block>
+      <view class='authuor'>
+        <image src='{{userInfo.avatarUrl}}'></image>
+        <text>{{item.author_name}}</text>
+      </view>
+      <view class='clear'></view>
+      <view class='tools'>
+        <button class='share' bindtap='share' open-type="share">
+          <image src='../../images/share.png'></image>
+        </button>
+
+        <view class='collect' bindtap='share_img' data-text='{{brand}}'>
+          <image src='../../images/star.png'></image>
+        </view>
+      </view>
+    </view>
+
+</template> 
