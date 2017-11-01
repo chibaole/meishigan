@@ -84,7 +84,7 @@
           </view>
 
           <button class='i_love' bindtap='my_love' data-cardID='{{item.id}}'>
-            <image src='../../images/first/praise_gray@3x.png'></image>
+            <image src='../../images/first/praise_orange@3x.png'></image>
             <view class='likedNum'>
               <text>{{item.liked}}</text>
             </view>

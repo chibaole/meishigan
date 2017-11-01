@@ -97,11 +97,8 @@ view {
 }
 
 .card_pic {
-  /* width: 712rpx; */
   height: 380rpx;
-  /* width: 800rpx; */
   margin: 0 auto;
-  /* border: 1rpx solid #000;    *//*  */
 }
 
 .art-title {
@@ -144,7 +141,6 @@ view {
   width: 40%;
   height: 60rpx;
   display: inline-block;
-  /* border:1rpx solid #000;  */
   margin-left: 40rpx;
   margin-bottom: 24rpx;
 }
@@ -154,7 +150,6 @@ view {
   height: 50rpx;
   border-radius: 50%;
   margin-right: 10rpx;
-  /* border-bottom: 1rpx solid red; */
   vertical-align: middle;
   /* 一群傻逼 */
 }
@@ -171,12 +166,10 @@ view {
   width: 25%;
   border-radius: 0;
   margin-bottom: -15rpx;
-  /* border: 1rpx solid red; */
 }
 
 .i_love {
   margin-left: 60rpx;
-  /* border: 1rpx solid red; */
 }
 
 .share {
@@ -202,7 +195,6 @@ button::after {
   width: 36rpx;
   height: 36rpx;
   margin-bottom: 30rpx;
-  /* text-align: center; */
   vertical-align: middle;
   background: url(http://oxnbz75b8.bkt.clouddn.com/praise_gray@3x.png) no-repeat;
   background-size: 36rpx 36rpx;

@@ -42,12 +42,12 @@
           <text>{{item.author}}</text> 
         </view> 
       
-         <button class='i_love' catchtap='my_love'  data-cardID='{{item.id}}' data-index='{{index}}' >
+         <button class='i_love'  bindtap='chang_img' data-cardID='{{item.id}}' data-index='{{index}}' >
          <!--收藏的图标  -->
 
-           <!-- <image src='{{item.id === currentCardid ? likedimg:nolikedimg}}'></image>  -->
+            <!-- <image src='{{item.likedimg == likedimg ? praise_img:likedimg }}'></image>   -->
           <!-- <image src='{{praise_img}}'></image> -->
-          <view class='{{item.id === currentCardid ?"image1":"image0"}}'></view>
+           <view class='{{item.likedimg == likedimg ?"image1":"image0"}}'></view> 
 
           <view class='likedNum'><text>{{item.collectNum}}</text></view>
         </button>

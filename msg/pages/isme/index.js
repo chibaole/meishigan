@@ -590,15 +590,17 @@ function getcollect(that, arg) {
                   for(var n = 0 ; n < alldata.length; n++){
                     if (alldata[n].get('collecter').length !== 0 ){
                       console.log(alldata[n].get('collecter'))
+
                       var collecter = alldata[n].get('collecter')
 
                       for (var coll_i = 0; coll_i < collecter.length; coll_i ++ ){
-                        if(collecter[coll_i] == openid){
+                        if(collecter[coll_i].collecter == openid){
                           var jsonA = {}
                           jsonA.author = alldata[n].get('author_name')
                           jsonA.title = alldata[n].get('title')
                           jsonA.content = alldata[n].get("brand")
                           jsonA.case_name = alldata[n].get("case_name")
+                          jsonA.liked = alldata[n].get("collectNum")
                           jsonA.id = alldata[n].id
                           var pic = alldata[n].get('pic');
                         if (pic) {
@@ -620,61 +622,7 @@ function getcollect(that, arg) {
                 })
               }
             })
-            // var user = Bmob.User.logIn(my_username, openid, {
-            //   success: function (users) {
-            //     var collect = users.get('collecter')
-            //           console.log(collect)
-            //           var cards = []
-
-            //     for (var i = 0; i < collect.length; i++) {
-
-            //       querycard.equalTo("objectId", collect[i])//
-
-            //       querycard.find({
-            //         success: function (res) {
-            //           console.log(res)
-            //           for (var j = 0; j < res.length; j++) {
-            //             var jsonA = {}
-            //             jsonA.author = res[j].get('author_name')
-            //             jsonA.title = res[j].get('title')
-            //             jsonA.content = res[j].get("brand")
-            //             jsonA.case_name = res[j].get("case_name")
-            //             jsonA.id = res[j].id
-            //             var pic = res[j].get('pic');
-            //             if (pic) {
-            //               jsonA.pic = res[j].get('pic')._url
-            //             } else {
-            //               jsonA.pic = '../../images/weekly.jpg'
-
-            //             }
-
-            //             // jsonA.author = res[j].get('author')
-            //                                     console.log(res[0].get('author'))
-
-            //             // var author = res[i].get("author").get("nickname");
-            //             // jsonA.author = author
-
-            //             cards.push(jsonA)
-
-            //             // console.log(jsonA.url)
-            //           }
-
-            //           console.log(cards)
-
-            //           that.setData({
-            //             my_draft: cards
-            //           })
-
-            //         }
-            //       })
-
-
-
-               
-            //     }
-
-            //   }
-            // });
+           
           }, function(error) {
             console.log(error);
           }
