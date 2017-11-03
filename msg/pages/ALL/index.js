@@ -60,8 +60,26 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function (res) {
+
+
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+
+    var path = '/pages/All/index'
+    return {
+      title: '吃饱了没事干',
+      path: path,
+      imageUrl: '../../images/weapp.png',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   },
   openurl: function(e){
     var url =  e.currentTarget.dataset.url

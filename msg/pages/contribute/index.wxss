@@ -19,7 +19,8 @@ view {
   margin: 20rpx auto;
   margin-top: 30rpx;
   background: #FFFFFF;
-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+  position: relative;
   /* border: 1rpx solid #000; */
 }
 .selLabel text{
@@ -27,22 +28,34 @@ box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
   font-size:28rpx;
   padding-left: 40rpx; 
 }
-
+.confirm_box{
+  width: 100rpx;
+  height: 100rpx;
+  /* border: 1rpx solid #000; */
+  position: absolute;
+  top: 10rpx;
+  right: 0rpx;
+}
 .confirm{
-  margin-left: 426rpx;
+  /* margin-left: 426rpx; */
   text-align: center;
   color: #DE4F2B;
   display: inline-block;
   font-size:28rpx;
-    height: 34rpx;width: 34rpx;
-    opacity: 0.5;
-transform: rotate(0deg);
-background: #D8D8D8;
-
+  height: 34rpx;width: 34rpx;
+  opacity: 0.5;
+  transform: rotate(0deg);
+  background: #D8D8D8; 
+  /* border: 1rpx solid #313131; */
+  /* margin-top: 25rpx; */
+   position: absolute;
+  top:34rpx; 
+  right: 40rpx;
+/* display: none; */
 }
 .confirm image{
   height: 34rpx;width: 34rpx;
-
+  /* display: none; */
 }
  
 /*  */

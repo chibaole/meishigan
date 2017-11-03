@@ -12,15 +12,13 @@ App({
       // console.log(value)
       if (value) {
         var currentUser =  Bmob.User.current();
-        console.log(Bmob.User)
-        console.log('909090909090')
-
+        // console.log(Bmob.User)
         that.setData({
           userName:currentUser.nickname
           
         })
 
-        console.log(that.data.userName)
+        // console.log(that.data.userName)
       }
       else {
         wx.login({
@@ -53,11 +51,17 @@ App({
                         error: function (user, error) {
                           if (error.code == "101") {
                             var user = new Bmob.User();//开始注册用户
+                            var arr = []
                             user.set("username", nickName);
                             user.set("password", userData.openid);//因为密码必须提供，但是微信直接登录小程序是没有密码的，所以用openId作为唯一密码    
                             user.set("nickname", nickName);
                             user.set("userPic", avatarUrl);
                             user.set("userData", userData);
+                            user.set("label", arr);
+                            user.set("openid", userData.openid);
+
+                          
+
                             user.signUp(null, {
                               success: function (results) {
                                 console.log("注册成功!");

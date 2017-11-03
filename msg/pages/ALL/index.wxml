@@ -22,8 +22,3 @@
             </view>
     </view> 
 
-<view class='foot'>
-      <view class='tabbar tabbar1' data-url='../../pages/test/index' bindtap='gotourl'> <image src='../../images/icon/home_gray@3x.png'></image></view>
-      <view class='tabbar tabbar2'  data-url='../ALL/index' bindtap='gotourl'> <image src='../../images/icon/explore_gray@3x.png'></image></view>
-      <view class='tabbar tabbar3' data-url='../isme/index' bindtap='gotourl'> <image src='../../images/icon/individual_gray@3x.png'></image></view>
-</view>

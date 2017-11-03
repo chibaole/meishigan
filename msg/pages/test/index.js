@@ -45,12 +45,10 @@ Page({
     agree:0,
     modul:'card'
   },
-  // onPageScroll: function (obj) {
-  //   console.log(obj)
-  // },
+ 
   onLoad: function (options) {
     // console.log('加载页面')
-    console.log(Bmob.sendMasterMessage)
+    // console.log(Bmob.sendMasterMessage)
 
     var that = this
     var userInfo;
@@ -74,7 +72,7 @@ Page({
     wx.getStorage({
       key: 'user_id',
       success: function(res) {
-        console.log(res.data)
+        // console.log(res.data)
         collecterid = res.data
         that.setData({
           currentUserid:res.data
@@ -89,12 +87,31 @@ Page({
   onShow: function () {
     this.getData()
   },
+  onShareAppMessage: function (res) {
 
 
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+
+    var path = '/pages/test/index'
+    return {
+      title: '吃饱了没事干',
+      path: path,
+      imageUrl:'../../images/weapp.jpg',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
   getData: function (arg) {
     that = this
     var Dirary
-    console.log(arg)
+    // console.log(arg)
     if (arg !== undefined) {
       Dirary = Bmob.Object.extend(arg)
     } else {
@@ -116,6 +133,9 @@ Page({
           var author = res[i].get("author")
           var publisherId = res[i].get("author").id
           var brand = res[i].get("brand")
+          var wordlimit;
+          // console.log(brand.length)
+          brand.length < 65 ? wordlimit = false : wordlimit = true
           var case_name = res[i].get("case_name")
           var liked = res[i].get("liked")
           var likeNum = res[i].get("likeNum")
@@ -123,36 +143,39 @@ Page({
           // console.log(res[i].get("author"))
           var avatar = res[i].get("author").get("userPic");
           var likedimg ;
-
           var id = res[i].id
           if (res[i].get('collectNum') < 1) {
             var collectNum = 1
           } else {
             var collectNum = res[i].get('collectNum')
           }
+
+          var is_liked ; 
           var collecters = res[i].get("collecter")
           for(var s = 0; s < collecters.length; s ++){
             if (collecters[s].collecter == collecterid ){
               likedimg = collecters[s].likedimg
+              is_liked = collecters[s].is_liked
             }else{
               likedimg = "../../images/icon/praise_gray@3x.png"
-
+              is_liked = 0
             }
           }
           jsonA = {
             "collectNum": collectNum,
             "bar_title": bar_title,
             "title": title,
-            "author": name,
-            "author_avatar": avatar,
+            "author": name || '没事干',
+            "author_avatar": avatar || "../../images/weapp.jpg",
             "brand": brand,
             "case_name": case_name || '',
             "liked": liked,
             "likeNum": likeNum,
             "id": id,
-            "likedimg": likedimg || 'http://oxnbz75b8.bkt.clouddn.com/praise_gray@3x.png'
+            "likedimg": likedimg || 'http://oxnbz75b8.bkt.clouddn.com/praise_gray@3x.png',
+            "is_liked": is_liked || 0,
+            "wordlimit":wordlimit
           }
-
           bar_titles.push(bar_title)
           jsonAs.push(jsonA)
         }
@@ -219,7 +242,7 @@ Page({
   },
 
   show_bar_title: function (e) {
-    console.log(e.currentTarget.dataset)
+    // console.log(e.currentTarget.dataset)
     that = this
     var title = e.currentTarget.dataset.title
     var count = e.currentTarget.dataset.count//所有的的数据长度值
@@ -237,7 +260,7 @@ Page({
           data[i].label_url = '../../images/first/labelling_an_dark.png'
       }
     }
-    console.log(current_index)
+    // console.log(current_index)
     that.data.limit = 3
     that.setData({
       resdata: that.data.resdata,
@@ -265,30 +288,27 @@ Page({
   pullData: function () {
     that = this
     var limit = that.data.limit
-    console.log(limit)
+    // console.log(limit)
 
     var orgdata = that.data.resdata.orgdata
 
     var limitdata = that.data.resdata.orgdata[current_index].data
 
-    // if (limit > limitdata.length ){
-    //          common.showModal("别扯了 没有新的内容的")
-    //          return false
-    // }
+  
 
     var result = limitdata.slice(0, limit)
     that.data.resdata.resdata[current_index].data = result
     var nowresdata = that.data.resdata
-    console.log(nowresdata)
+    // console.log(nowresdata)
     that.setData({
       resdata: nowresdata
     })
   },
   select_module: function (e) {
     that = this
-    console.log(e.currentTarget.dataset)
+    // console.log(e.currentTarget.dataset)
     var model = e.currentTarget.dataset.mod
-    console.log(model)
+    // console.log(model)
     that.setData({
       modul: model
     })
@@ -297,8 +317,8 @@ Page({
 
   },
   clip(options) {
-    console.log('点击了复制')
-    console.log(options)
+    // console.log('点击了复制')
+    // console.log(options)
     that = this;
     var clip = options.currentTarget.dataset.case
     // console.log(clip)
@@ -308,8 +328,8 @@ Page({
         // 阳澄湖大闸蟹
         wx.getClipboardData({
           success: function (res) {
-            console.log(res.data) // data
-            console.log('为啥没有弹框')
+            // console.log(res.data) // data
+            // console.log('为啥没有弹框')
             wx.showToast({
               title: '已复制到剪切板',
 
@@ -321,97 +341,15 @@ Page({
 
   },
 
-  my_love: function (e) {
-    that = this
-    // that.onShow()
-    console.log(e)
-    var currentID = e.currentTarget.dataset.cardid//点击的卡片的id 这是唯一的不同点
-    var likeNum = that.data.likednum
-    var item_id;
-
-    // 
-    let currentUserid = that.data.currentUserid// currentID
-    // 
-
-    wx.getStorage({
-      key: 'user_id',
-      success: function (ress) {
-        var Diar = Bmob.Object.extend('card')
-        var querylike = new Bmob.Query(Diar)
-        querylike.equalTo("objectId", currentID)
-        querylike.find({
-          success: function (res) {
-            console.log(res[0])//点击选中的卡片 
-            var isLiked = false
-            var collcterArray = res[0].get('collecter')
-            var collcterNum = res[0].get('collectNum')
-            item_id = res[0].id
-            if (collcterArray.length > 0) {
-              console.log('收藏者里已经有收藏的人了')
-              for (var i = 0; i < collcterArray.length; i++) {
-                if (collcterArray[i] == ress.data) {
-                  collcterArray.remove(ress.data)//删除已存在的收藏者
-                  collcterNum = collcterNum - 1//收藏人数减1
-                  collcterNum < 0 ? collcterNum = 1 : collcterNum = collcterNum
-                  isLiked = true
-                  res[0].set('collecter', collcterArray)//
-                  // res[0].ser('likedimg','http://oxnbz75b8.bkt.cloudd')
-                  res[0].set('collectNum', collcterNum)//
-                  that.setData({
-                    isLiked: isLiked,
-                    currentCardid: currentID,
-                  })
-                  break
-
-                }
-              }
-                  console.log(isLiked)
-              if (isLiked == false) {
-                // 如果不在当前的收藏者列表里 就添加进去
-                console.log('将要添加的收藏者' + ress.data)
-
-                collcterArray.push(ress.data)
-
-                collcterNum < 0 ? collcterNum = 1 : collcterNum = collcterNum + 1
-
-                res[0].set('collecter', collcterArray)
-
-                res[0].set('collectNum', collcterNum)
-
-                that.setData({
-                  isLiked: isLiked,
-                  currentCardid: currentID,
-                })
-
-              }
-            } else {
-              collcterArray.push(ress.data)
-              console.log(collcterArray)
-              collcterNum = collcterNum + 1
-              res[0].set('collecter', collcterArray)
-              res[0].set('collectNum', collcterNum)
-              that.setData({
-                isLiked: isLiked,
-                currentCardid: currentID,
-              })
-            }
-            res[0].save();
-          }
-        })
-      }
-    })
-
-    
-
-
-  },
+ 
 
   showall: function (e) {
     //显示全文函数
     that = this
     var id = e.currentTarget.dataset.showall
     var show_word = that.data.show_word
-    console.log(id)
+    
+    // console.log(id)
     //控制显示样式
 
 
@@ -431,7 +369,7 @@ Page({
   },
   gotourl: function (e) {
     var url = e.currentTarget.dataset.url
-    console.log(e)
+    // console.log(e)
     wx.redirectTo({
       url: url
     })
@@ -453,7 +391,7 @@ Page({
     wx.getStorage({
       key: 'user_id',
       success: function(res) {
-        console.log(res.data)
+        // console.log(res.data)
         var current_id = res.data
         var isLiked = false
 
@@ -463,53 +401,68 @@ Page({
             var collectNum = result[0].get('collectNum')
             var collecterUser = result[0].get('collecter')
             if(collecterUser.length > 0){
-              console.log('本文章已经有收藏的人了')
+              // console.log('本文章已经有收藏的人了')
               for(var i = 0 ;i < collecterUser.length; i++){
-                console.log(collecterUser[i].collecter )
+                // console.log(collecterUser[i].collecter )
                 if (collecterUser[i].collecter == current_id){
-                  console.log('这个用户已在收藏者列表')//删除此用户
+                  // console.log('这个用户已在收藏者列表')//删除此用户
 
                   collectNum = collectNum - 1
                   collectNum < 0 ? collectNum = 1 : collectNum = collectNum
                   collecterUser.remove(collecterUser[i])
                   result[0].set("collecter",collecterUser)
                   result[0].set("collectNum", collectNum)
+                  // result[0].set('is_liked','0')
 
                   // result[0].save()
                   isLiked = true
                   that.setData({
                     isLiked: isLiked
                   })
-
+                  wx.showToast({
+                    title: '已取消收藏',
+                    icon: 'success',
+                    duration: 2000
+                  })
                   break
                 }
               }
 
               if (isLiked == false) {
-                console.log('当前的用户还不在收藏的列表里')//添加进来新的用户
+                // console.log('当前的用户还不在收藏的列表里')//添加进来新的用户
                 var newUser = new Object()
                 newUser.collecter = current_id
                 newUser.likedimg = '../../images/icon/praise_orange@3x.png'
+                newUser.is_liked = 1
                 collectNum = collectNum + 1
                 collecterUser.push(newUser)
 
                 result[0].set("collecter", collecterUser)
                 result[0].set("collectNum", collectNum)
-
+                wx.showToast({
+                  title: '已收藏',
+                  icon: 'success',
+                  duration: 2000
+                })
               }
 
             }else{
               var newUser = new Object()
               newUser.collecter = current_id
               newUser.likedimg = '../../images/icon/praise_orange@3x.png'
+              newUser.is_liked = 1
               collectNum = collectNum + 1
               collecterUser.push(newUser)
               result[0].set("collecter", collecterUser)
               result[0].set("collectNum", collectNum)
+              wx.showToast({
+                title: '已收藏',
+                icon: 'success',
+                duration: 2000
+              })
             }
 
-            result[0].save()
-           
+            result[0].save() 
           },
           error: function (result, error) {
             console.log("查询失败");

@@ -72,11 +72,12 @@ line-height: 120rpx;
 .page{
   background: #f6f6f6;
   font-family:  PingFangSC-Medium;
+  /* border: 1rpx solid #000; */
 }
 
 .my-info{
   width: 100%;
-   border: 1rpx solid #fff; 
+  /* border: 1rpx solid red;   */
   background: #fff;
  } 
 
@@ -257,7 +258,7 @@ letter-spacing: -0.24px;
 
 }
 .art_container{
-  width: 750rpx;
+  width: 745rpx;
   height: 270rpx;
   border-top: 1rpx solid #9b9b9b; 
    /* box-shadow: 0 4rpx 6rpx #000;  */
@@ -538,6 +539,11 @@ margin-top: -10rpx;
 font-family: PingFangSC-Light;
 font-size: 28rpx;
 color: #454553;
+font-weight: bolder;
+}
+
+.noshowall{
+  display: none
 }
 .clear {
   clear: both;
@@ -584,8 +590,9 @@ color: #454553;
   /* border: 1rpx solid red; */
 }
 .i_love{
-  margin-left: 60rpx;
+  /* margin-left: 60rpx; */
   /* border: 1rpx solid red; */
+  margin-left: 195rpx;
 }
 .share{
     width: 10%;
@@ -611,12 +618,34 @@ button::after {
 
   font-size: 28rpx;
   height: 30rpx;
-  line-height: 50rpx;
+  line-height: 60rpx;
   position: absolute;
   top:10rpx;
 }
 button::after {
   border: 0 none;
+}
+
+
+.image0 {
+  display: inline-block;
+  width: 36rpx;
+  height: 36rpx;
+  margin-bottom: 30rpx;
+  vertical-align: middle;
+  background: url(http://oxnbz75b8.bkt.clouddn.com/praise_gray@3x.png) no-repeat;
+  background-size: 36rpx 36rpx;
+}
+
+.image1 {
+  display: inline-block;
+  width: 36rpx;
+  height: 36rpx;
+  margin-bottom: 30rpx;
+  /* text-align: center; */
+  vertical-align: middle;
+  background: url(http://oxnbz75b8.bkt.clouddn.com/praise_orange@3x.png) no-repeat;
+  background-size: 36rpx 36rpx;
 }
 
 /*-------  */

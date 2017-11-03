@@ -127,6 +127,9 @@ view {
   float: right;
   margin-right: 60rpx;
 }
+.noshowall{
+  display: none;
+}
 
 .clear {
   clear: both;
@@ -169,7 +172,9 @@ view {
 }
 
 .i_love {
-  margin-left: 60rpx;
+  /* margin-left: 60rpx; 有分享按钮 */
+  /* border: 1rpx solid #353541; */
+  margin-left: 195rpx;
 }
 
 .share {
@@ -215,6 +220,7 @@ button::after {
   display: inline-block;
   width: 60rpx;
   height: 60rpx;
+  /* border: 1rpx solid #000; */
 }
 
 .likedNum text {
@@ -223,7 +229,7 @@ button::after {
   font-size: 28rpx;
   /* width: 30rpx; */
   height: 30rpx;
-  line-height: 50rpx;
+  line-height: 60rpx;
   position: absolute;
   top: 10rpx;
 }

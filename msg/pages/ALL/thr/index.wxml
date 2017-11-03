@@ -15,11 +15,7 @@
               <text>{{item.question}}</text>
             </label>
           </radio-group>
-        
-
-
           <button formType="submit"><image src='../../../images/icon/next page@3x.png'></image></button> 
-    
     </form>
   </view>
 </view>

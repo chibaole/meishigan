@@ -8,9 +8,12 @@
 
   <view class='selLabel'>
     <text>{{mytheme}}</text>
-     <view class='confirm' bindtap='confirm'> <image mode='aspectFit' src="../../images/drop-down.png"></image> </view> 
+    <view class='confirm_box'>
+      <view class='confirm' bindtap='confirm'> 
+        <image mode='aspectFit' src="../../images/newdrop.png"></image>
+      </view> 
+    </view>
   </view>
-
  <view class='theme_box' wx:if='{{show}}'>
           <radio-group class="radio-group" bindchange="radioChange" name="question">
             <label class="radio" wx:for="{{theme}}">

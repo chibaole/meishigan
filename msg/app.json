@@ -4,7 +4,6 @@
         
         "pages/home/index",
         
-            "pages/sisi/index",
             
     "pages/contribute/index",
         "pages/other/index",
@@ -16,17 +15,8 @@
     "pages/isme/index",
     "pages/isme/edit/index",
     "pages/isme/message/index",            
-    "pages/index/index",
-    "pages/listDetail/listDetail",
-    "pages/logs/logs",
-    "pages/2048/2048",
-    "pages/second/index",
-    "pages/cityFoodieMap/index",
-    "pages/write/write",
-    "pages/tougao/index",
     "pages/ALL/index",
     "pages/ALL/six/index",
-    "pages/newList/index",
     "pages/share_img/index"
   ],
   "window": {
@@ -41,20 +31,17 @@
       {
         "pagePath": "pages/test/index",
         "iconPath": "images/icon/home_gray@3x.png",
-        "selectedIconPath": "images/icon/home_orange@3x.png",
-        "text": "首页"
+        "selectedIconPath": "images/icon/home_orange@3x.png"
       },
       {
         "pagePath": "pages/ALL/index",
         "iconPath": "images/icon/explore_gray@3x.png",
-        "selectedIconPath": "images/icon/explore_orange@3x.png",
-        "text": "发现"
+        "selectedIconPath": "images/icon/explore_orange@3x.png"
       },
       {
         "pagePath": "pages/isme/index",
         "iconPath": "images/icon/individual_gray@3x.png",
-        "selectedIconPath": "images/icon/individual_orange@3x.png",
-        "text": "个人"
+        "selectedIconPath": "images/icon/individual_orange@3x.png"
       }
     ]
   }

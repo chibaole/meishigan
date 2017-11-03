@@ -1,134 +1,128 @@
 <!--pages/isme/index.wxml-->
 <!-- <text>其实上面的刘大维是不能做变量的</text> -->
-<view class='page'>
-
-  <block wx:if="{{showLoading}}">
-    <view class="page-loading">
-      <text class="weui-loading" />
-      <text class="loading-text">玩命加载中</text>
-    </view>
-  </block>
-
-  <block wx:else>
-    <view class="my-info">
-  
-      <view class='message_idet_user'>
-     
-
-        <!-- <view class='message' bindtap="message">
-          <image src='../../images/icon/news@3x.png' bindtap='message'></image>
-          <text id='unread' wx:if="{{unread}}">{{remindscount}}</text>
-        </view> -->
-        <navigator class='message' bindtap="message" url='/pages/isme/message/index'>
-          <image src='../../images/icon/news@3x.png' bindtap='message'></image>
-          <text id='unread' wx:if="{{unread}}">{{remindscount}}</text>
-        </navigator> 
-
-        <view class='user'>
-          <view class='avatar'>
-            <image src='{{userInfo.avatarUrl}}'></image>
-          </view>
-          <view class='nickname'>{{myInfo.nickname}}</view>
-        </view>
-
-        <view class='edit' bindtap="edit">
-          <image src='../../images/icon/edit@3x.png'></image>
-        </view>
-      </view>
-      <view class="cont-box">
-        <view class="contribut">
-          <view class="con-value">{{myInfo.con_val}}</view>
-          <view class="nor-text">获赞</view>
-        </view>
-        <view class="niceContribut">
-          <view class="nice-value">{{myInfo.special_val}}</view>
-          <view class="nice-text">精华</view>
-        </view>
-      </view>
-
-      <view class="labels">
-        <text wx:for="{{myInfo.labels}}">{{item.title}}</text>
-      </view>
-      
-    </view>
-
-    <view class='sel_tab'>
-      <view class='item0' bindtap='showitem'  data-item='achievement'>
-        <text class="{{curitem == 'achievement' ? 'line':''}}">我的成果</text>
-      </view>
-      <view class='item1' bindtap='showitem' data-item='collecter'>
-        <text class="{{curitem == 'collecter' ? 'line':''}}">我的收藏</text>
-      </view>
-    </view>
-
-    <!-- <view class="line-bar">我 的研究成果</view> -->
-    <block wx:if="{{1}}">
-      <view class='my_success' wx:for='{{my_draft}}'>
-        <image  wx:if="{{item.pic}}" src='{{item.pic}}' mode='aspectFill'></image>
-
-        <view class='card_title'>{{item.title}}</view>
-        <view class='{{item.id === classid ? "show_all":"art-text"}}' >{{item.content}}</view>
-        <text class='showall' bindtap='showall' data-item='{{item.id}}'>{{classid === item.id?show_word:"查看全文"}}</text>
-        <!--复制关键词  -->
-        <block wx:if="{{1}}">
-          <view class='case-name' wx:if="{{item.case_name}}">
-            <text selectable='true'>{{item.case_name}}</text>
-            <image src='../../images/first/replication_orange@3x.png' data-id='{{item.id}}' data-clip_mod='{{item.clip_mod}}' data-case='{{item.case_name}}' bindtap='clip'></image>
-          </view>
-        </block>
-        <view class='clear'></view>
-        <view class='tools'>
-          <view class='new_authuor'>
-            <image src='{{userInfo.avatarUrl}}'></image>
-            <text>{{item.author}}</text>
-          </view>
-
-          <button class='i_love' bindtap='my_love' data-cardID='{{item.id}}'>
-            <image src='../../images/first/praise_orange@3x.png'></image>
-            <view class='likedNum'>
-              <text>{{item.liked}}</text>
-            </view>
-          </button>
-          <button class='share' bindtap='share' open-type='share' data-user='100100' data-collecter='{{item}}'>
-            <image src='../../images/first/sharing_gray@3x.png'></image>
-          </button>
-        </view>
-
+<scroll-view scroll-x='true' scroll-y='true' class='page'>
+  <scroll-view scroll-x='true' scroll-y='true'>   
+    <block wx:if="{{showLoading}}">
+      <view class="page-loading">
+        <text class="weui-loading" />
+        <text class="loading-text">玩命加载中</text>
       </view>
     </block>
-  </block>
-<view class='foot'>
-      <view class='tabbar tabbar1' data-url='../../pages/test/index' bindtap='gotourl'> <image src='../../images/icon/home_gray@3x.png'></image></view>
-      <view class='tabbar tabbar2'  data-url='../ALL/index' bindtap='gotourl'> <image src='../../images/icon/explore_gray@3x.png'></image></view>
-      <view class='tabbar tabbar3' data-url='../isme/index' bindtap='gotourl'> <image src='../../images/icon/individual_gray@3x.png'></image></view>
-</view>
+
+    <block wx:else>
+      <scroll-view scroll-x='true' scroll-y='true' class="my-info">
+
+        <view class='message_idet_user'>
 
 
+          <!-- <view class='message' bindtap="message">
+            <image src='../../images/icon/news@3x.png' bindtap='message'></image>
+            <text id='unread' wx:if="{{unread}}">{{remindscount}}</text>
+          </view> -->
+          <navigator class='message' bindtap="message" url='/pages/isme/message/index'>
+            <image src='../../images/icon/news@3x.png' bindtap='message'></image>
+            <text id='unread' wx:if="{{unread}}">{{remindscount}}</text>
+          </navigator>
 
-
-  <!--首次进入我的个人页展示下面的组件-->
-
-   <view class="js_dialog" id="androidDialog1" style="opacity: 1; " wx:if="{{invite_code}}"> 
-  <!-- <view class="js_dialog" id="androidDialog1" style="opacity: 1; " wx:if="{{0}}"> -->
-    <view class="weui-mask"></view>
-    <view class="weui-dialog weui-skin_android">
-      <form bindsubmit="formSubmit" bindreset="formReset">
-        <view class='tipword'>请输入邀请码</view>
-        <view class="forCode">
-          <input name="input" type="text" maxlength='8' />
-        </view>
-
-        <view class="confirm_invite_code">
-        <view class='button button_l'>
-                    <button bindtap='cancle' form-type='reset'>没有</button>
+          <view class='user'>
+            <view class='avatar'>
+              <image src='{{userInfo.avatarUrl}}'></image>
+            </view>
+            <view class='nickname'>{{myInfo.nickname}}</view>
           </view>
-          <view class='button button_r'>
-                        <button form-type='submit' class='r_line'>确定</button>
+
+          <view class='edit' bindtap="edit">
+            <image src='../../images/icon/edit@3x.png'></image>
           </view>
         </view>
-      </form>
+        <view class="cont-box">
+          <view class="contribut">
+            <view class="con-value">{{myInfo.con_val}}</view>
+            <view class="nor-text">获赞</view>
+          </view>
+          <view class="niceContribut">
+            <view class="nice-value">{{myInfo.special_val}}</view>
+            <view class="nice-text">精华</view>
+          </view>
+        </view>
 
+        <view class="labels">
+          <text wx:for="{{myInfo.labels}}">{{item.title}}</text>
+        </view>
+
+      </scroll-view>
+
+      <view class='sel_tab'>
+        <view class='item0' bindtap='showitem' data-item='achievement'>
+          <text class="{{curitem == 'achievement' ? 'line':''}}">我的成果</text>
+        </view>
+        <view class='item1' bindtap='showitem' data-item='collecter'>
+          <text class="{{curitem == 'collecter' ? 'line':''}}">我的收藏</text>
+        </view>
+      </view>
+
+      <!-- <view class="line-bar">我 的研究成果</view> -->
+      <block wx:if="{{1}}">
+        <view class='my_success' wx:for='{{my_draft}}'>
+          <image wx:if="{{item.pic}}" src='{{item.pic}}' mode='aspectFill'></image>
+
+          <view class='card_title'>{{item.title}}</view>
+          <view class='{{item.id === classid ? "show_all":"art-text"}}'>{{item.content}}</view>
+          <text class='{{item.limit == true? "noshowall":"showall"}}' bindtap='showall' data-item='{{item.id}}'>{{classid === item.id?show_word:"查看全文"}}</text>
+          <!--复制关键词  -->
+          <block wx:if="{{1}}">
+            <view class='case-name' wx:if="{{item.case_name}}">
+              <text selectable='true'>{{item.case_name}}</text>
+              <image src='../../images/first/replication_orange@3x.png' data-id='{{item.id}}' data-clip_mod='{{item.clip_mod}}' data-case='{{item.case_name}}' bindtap='clip'></image>
+            </view>
+          </block>
+          <view class='clear'></view>
+          <view class='tools'>
+            <view class='new_authuor'>
+              <image src='{{userInfo.avatarUrl}}'></image>
+              <text>{{item.author}}</text>
+            </view>
+
+            <button class='i_love'  bindtap='chang_img' data-cardID='{{item.id}}'>
+              <!-- <image src='../../images/first/praise_orange@3x.png'></image> -->
+              <view class='image{{item.is_liked}}'></view> 
+              <view class='likedNum'>
+                <text>{{item.liked}}</text>
+              </view>
+            </button>
+            <!-- <button class='share' bindtap='share' open-type='share' data-user='100100' data-collecter='{{item}}'>
+              <image src='../../images/first/sharing_gray@3x.png'></image>
+            </button> -->
+          </view>
+
+        </view>
+      </block>
+    </block>
+
+
+    <!--首次进入我的个人页展示下面的组件-->
+
+    <view class="js_dialog" id="androidDialog1" style="opacity: 1; " wx:if="{{invite_code}}">
+      <!-- <view class="js_dialog" id="androidDialog1" style="opacity: 1; " wx:if="{{0}}"> -->
+      <view class="weui-mask"></view>
+      <view class="weui-dialog weui-skin_android">
+        <form bindsubmit="formSubmit" bindreset="formReset">
+          <view class='tipword'>请输入邀请码</view>
+          <view class="forCode">
+            <input name="input" type="text" maxlength='8' />
+          </view>
+
+          <view class="confirm_invite_code">
+            <view class='button button_l'>
+              <button bindtap='cancle' form-type='reset'>没有</button>
+            </view>
+            <view class='button button_r'>
+              <button form-type='submit' class='r_line'>确定</button>
+            </view>
+          </view>
+        </form>
+
+      </view>
     </view>
-  </view>
-
-</view>
+</scroll-view>
+</scroll-view>

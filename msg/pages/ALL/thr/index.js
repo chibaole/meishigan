@@ -11,22 +11,55 @@ Page({
    * 页面的初始数据
    */
   data: {
-    items: [
-      { question: '你吃过最贵的一顿饭是什么？你觉得值得么？' },
-      { question: '你最擅长的美食中的哪个领域呢，为什么？' },
-      { question: '你对美食有什么特殊的看法，说来听听？' },
-      { question: '你晚餐吃什么，那完美的晚餐应该是怎样的?' },
-      { question: '你吃过最贵的一顿饭是什么，感觉如何？' },
-    ]
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this
+    var Question = Bmob.Object.extend("Question");
+    var query = new Bmob.Query(Question);
+    query.find({
+      success: function (res) {
+        console.log(res)
+        var arr = [];
+        var question = new Object()
+        for (var i = 0; i < res.length; i++) {
+          question = {
+            "question": res[i].get('question')
+          }
+          arr.push(question)
+        }
+        console.log(arr)
+        that.setData({
+          items: arr
+        })
+      }
+    })
   },
+  onShareAppMessage: function (res) {
 
+
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+
+    var path = '/pages/test/index'
+    return {
+      title: '自定义转发标题',
+      path: path,
+      imageUrl: '../../images/weapp.png',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

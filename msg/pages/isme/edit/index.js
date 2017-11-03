@@ -27,7 +27,7 @@ Page({
   data: {
     labels:['电话费','回家','干一宿','好次诋毁森岛宽晃','没的打飞机','们的深深的','深度','快结束的','水淀粉'],
     activeltemIndex:'',
-    label: [{ "change": true, "lab_class": "active", "label": "", "title": "标签一" }, { "change": true, "lab_class": "active", "label": "", "title": "标签二" }, { "change": true, "lab_class": "active", "label": "", "title": "标签三" }],
+    label: [],
    
   },
 
@@ -64,7 +64,6 @@ Page({
         })
       }
     })
-
     wx.getStorage({
       key: 'my_username',
       success: function (ress) {
@@ -120,9 +119,6 @@ Page({
                     }
                   })
 
-
-
-
                   // console.log(invite)
                   if (invite != '') {
                     that.setData({
@@ -138,10 +134,6 @@ Page({
 
                     })
                   }
-
-
-
-
                 }
               });
             }, function(error) {
@@ -155,42 +147,6 @@ Page({
 
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
-
   formSubmit(e) {
     console.log(e)
     that = this;
@@ -202,7 +158,6 @@ Page({
     wx.getStorage({
       key: 'my_username',
       success: function (ress) {
-        
         if (ress.data) {
           var my_username = ress.data;
           wx.getStorage({
@@ -212,13 +167,14 @@ Page({
               var user = Bmob.User.logIn(my_username, openid, {
                 success: function (users) {
                   if (users.get('invite_code') === invitation){
-
                         if (newname === ''){
                           // users.set('nickname', n); 
                         }else{
                           users.set('nickname', newname); 
                         }
                         users.set('type','研究员') // attempt to change username
+
+
                         users.set('label',mylabel)
                         users.save(null, {
                           success: function (user) {
@@ -232,7 +188,6 @@ Page({
                             common.dataLoading("修改昵称成功", "success");
                           },
                           error: function (error) {
-                            common.dataLoading(res.data.error, "loading");
                             that.setData({
                               isModifyNick: false,
                               isdisabled: false,
@@ -244,7 +199,15 @@ Page({
 
                   } else {
                     users.set('nickname', newname);
-                    users.set('type', '游客') // attempt to change username
+
+                    if(users.get(type) == '研究员'){
+                      return
+                    }else{
+                      users.set('type', '游客')
+                    }
+                     // attempt to change username
+
+
                     users.set('label', mylabel)
                     users.save(null, {
                       success: function (user) {
@@ -280,13 +243,11 @@ Page({
       }
     })
 
-  wx.switchTab({
-    url: '../index',
-  }) 
+  // wx.switchTab({
+  //   url: '../index',
+  // }) 
   console.log('跳转到首页')
-  // wx.navigateBack({
-  //   delta:2
-  // })
+
 
   },
   test:function(e){

@@ -20,13 +20,13 @@
   <block wx:for="{{resdata.resdata}}" wx:for-item="data">
     <view class='title-bar' bindtap='show_bar_title' data-title='{{data.title}}' data-isHid='{{data.isHid}}' data-count='{{data.data.length}}'><image src='{{data.label_url}}'></image> {{data.title}}</view>
     <!-- <view class='art' wx:for="{{onlydata.data}}" wx:if="{{onlydata.isHid}}"> -->
-    <view class='art' wx:for="{{data.data}}" wx:if="{{data.isHid}}" data-id='{{item.id}}' bindtap='goDetail'>
+    <view class='art' wx:for="{{data.data}}" wx:if="{{data.isHid}}" data-id='{{item.id}}'>
       <image class='card_pic' wx:if="{{picUrl}}"  src='{{picUrl}}' mode='aspectFill'></image>
       <view class='art-title'>{{item.title}}</view>
       <view class='{{item.id === classid ? "show_all":"art-text"}}' data-classid='{{item.id}}'>
         {{item.brand}}
       </view>
-      <text class='showall' bindtap='showall' data-showall='{{item.id}}'>{{classid === item.id?show_word:"查看全文"}}</text>
+      <text class='{{item.wordlimit == true ?"showall":"noshowall"}}' bindtap='showall' data-showall='{{item.id}}'>{{classid === item.id?show_word:"查看全文"}}</text>
       <!--复制关键词  -->
        <block wx:if="{{item.case_name}}">
         <view class='case-name'>
@@ -47,19 +47,17 @@
 
             <!-- <image src='{{item.likedimg == likedimg ? praise_img:likedimg }}'></image>   -->
           <!-- <image src='{{praise_img}}'></image> -->
-           <view class='{{item.likedimg == likedimg ?"image1":"image0"}}'></view> 
+           <view class='image{{item.is_liked}}'></view> 
 
           <view class='likedNum'><text>{{item.collectNum}}</text></view>
         </button>
-        <button class='share' bindtap='share'  open-type='share' data-user='100100' data-collecter='{{item}}'>
+        <!-- <button class='share' bindtap='share'  open-type='share' data-user='100100' data-collecter='{{item}}'>
             <image src='../../images/first/sharing_gray@3x.png'></image>  
-        </button> 
+        </button>  -->
 
       </view>
     </view>
   </block>
 
 </scroll-view>
-
-
 <!-- <view>{{liked}}</view> -->

@@ -3,6 +3,8 @@
 .page {
   background: #f6f6f6;
   /* height: 1210rpx; */
+    padding-bottom: 10rpx;
+
 }
 
 .header {
@@ -109,7 +111,7 @@ button {
   height: 116rpx;
   border-radius: 50%;
   padding: 0;
-  margin: 0;
+  /* margin: 0; */
   margin: 144rpx auto 0;
 }
 

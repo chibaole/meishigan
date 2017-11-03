@@ -1,6 +1,6 @@
 .page{
   background: #f6f6f6;
-  /* height: 1210rpx; */
+  padding-bottom: 16rpx;
 }
 .header{
 height: 144rpx;
@@ -11,19 +11,17 @@ position: relative;
 
 }
 .circle{
-  width: 38rpx;
-  height: 38rpx;
-  border-radius: 50%;
+width: 38rpx;
+height: 38rpx;
+border-radius: 50%;
 background: #DE4F2B;
-/* margin-left: 50%; */
 position: absolute;
 top:51.4rpx;
 right: 360rpx;
-
 }
 .line{
-  width: 750rpx;
-  height: 6rpx;
+width: 750rpx;
+height: 6rpx;
 background: #DE4F2B;
 position: absolute;
 top:67.4rpx;
@@ -96,7 +94,8 @@ button {
   height: 116rpx;
   border-radius: 50%;
   padding: 0;
-  margin: 144rpx auto 0;
+  margin: 0 auto ;
+
 }
 
 button image {

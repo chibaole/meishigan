@@ -215,10 +215,7 @@ label {
   display: inline-block;
   width: 160rpx;
   height: 160rpx;
-  /* border: 1rpx solid red;  */
-  /* margin-left: 20rpx; */
-  /* margin-top:80rpx; */
-  /* display: none; */
+
 }
 
  .add_pic view {

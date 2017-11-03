@@ -9,7 +9,7 @@
 <view class='content'>
     <form bindsubmit='formSubmit'>
       
-          <view class='sel_qu'>1. 选择一个你最想回答的问题</view>
+          <view class='sel_qu'>请回答你选择的问题</view>
        
           <radio-group  name="question">
                   <label>

@@ -49,7 +49,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    that = this
+    var Theme = Bmob.Object.extend("Theme");
+    var query = new Bmob.Query(Theme);
+    query.find({
+      success: function (res) {
+        console.log(res)
+        var arr = [];
+        var theme = new Object()
+        for (var i = 0; i < res.length; i++) {
+          theme = {
+            "theme": res[i].get('title'),
+            "checkd": res[i].get('checkd')
+          }
+          arr.push(theme)
+        }
+        console.log(arr)
+        that.setData({
+          theme: arr
+        })
+      }
+    })
   },
 
   /**

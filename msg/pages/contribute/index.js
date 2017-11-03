@@ -31,25 +31,35 @@ Page({
     show: false,
     mytheme:'选择所属主题',
     theme: [
-      {
-        theme: '主题一',
-        checkd: false
-      }, {
-        theme: '主题二',
-        checkd: false
-      }, {
-        theme: '主题三',
-        checkd: false
-      }, {
-        theme: '主题四',
-        checkd: false
-      }]
+     ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+            that = this
+            var Theme = Bmob.Object.extend("Theme");
+            var query = new Bmob.Query(Theme);
+            query.find({
+              success:function(res){
+                      console.log(res)
+                      var arr = [];
+                      var theme = new Object()
+                      for(var i = 0; i < res.length; i++){                     
+                        theme = {
+                          "theme": res[i].get('title'),
+                          "checkd": res[i].get('checkd')
+                        }
+                        arr.push(theme)
+                      }
+                      console.log(arr)
+                      that.setData({
+                        theme:arr
+                      })
+              }
+            })
+            // var query = new Bmob.Query(Diary)
 
   },
 
@@ -81,7 +91,27 @@ Page({
 
   },
 
+  onShareAppMessage: function (res) {
 
+
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+
+    var path = '/pages/contribute/index'
+    return {
+      title: '吃饱了没事干',
+      path: path,
+      imageUrl: '../../images/weapp.png',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -343,16 +373,11 @@ Page({
                 isLoading: false,
                 isdisabled: false
               })
-              // 添加成功，返回成功之后的objectId（注意：返回的属性名字是id，不是objectId），你还可以在Bmob的Web管理后台看到对应的数据
-              // common.dataLoading("投稿成功", "success", function () {
-              //   wx.navigateBack({
-              //     delta: 1
-              //   })
-              // });
+         
 
               wx.showModal({
                 title: '提交成功',
-                content: '感谢你的来信，审核通过后我们将在系统消息通知d',
+                content: '感谢你的来信，审核通过后我们将在系统消息通知',
                 showCancel: false,
                 success: function (res) {
                   if (res.confirm) {
@@ -361,6 +386,9 @@ Page({
                     console.log('用户点击取消')
                   }
                 }
+              })
+              wx.switchTab({
+                url: '../ALL/index',
               })
             },
             error: function (result, error) {

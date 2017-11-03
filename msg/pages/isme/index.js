@@ -66,9 +66,8 @@ Page({
                   var con_val = users.attributes.con_val
                   var nickname = users.attributes.nickname
                   var invite_code = users.attributes.invite_code
-                  if(invite_code !== ''){
-
-               
+                  console.log(invite_code)
+                  if(invite_code !== undefined){
                     that.setData({
                       myInfo: {
                         labels: labels,
@@ -118,7 +117,29 @@ Page({
       showLoading: false
     })
 
-    getcard(that, 'Draft');
+    getcard(that, 'card');
+  },
+
+  onShareAppMessage: function (res) {
+
+
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+
+    var path = '/pages/isme/index'
+    return {
+      title: '吃饱了没事干',
+      path: path,
+      imageUrl: '../../images/weapp.png',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   },
 
   shareTo() {
@@ -164,12 +185,11 @@ Page({
     console.log(item)//item0/item1
 
     if (item == 'achievement') {
-      getcard(that, 'Draft')
+      getcard(that, 'card')
     } else if (item == 'collecter') {
       getcollect(that, 'card')
 
     }
-
     that.setData({
       curitem: item
     })
@@ -508,6 +528,95 @@ Page({
       url: url
     })
 
+  },
+  chang_img: function (e) {
+    that = this
+    // var modul = that.data.modul
+    // modul == undefined ? 'card' : modul
+    var itemid = e.currentTarget.dataset.cardid
+    var Card = Bmob.Object.extend('card');
+    var query = new Bmob.Query(Card);
+    query.equalTo("objectId", itemid)
+    wx.getStorage({
+      key: 'user_id',
+      success: function (res) {
+        // console.log(res.data)
+        var current_id = res.data
+        var isLiked = false
+        query.find({
+          success: function (result) {
+            // console.log(result);
+            var collectNum = result[0].get('collectNum')
+            var collecterUser = result[0].get('collecter')
+            if (collecterUser.length > 0) {
+              // console.log('本文章已经有收藏的人了')
+              for (var i = 0; i < collecterUser.length; i++) {
+                // console.log(collecterUser[i].collecter )
+                if (collecterUser[i].collecter == current_id) {
+                  // console.log('这个用户已在收藏者列表')//删除此用户
+
+                  collectNum = collectNum - 1
+                  collectNum < 0 ? collectNum = 1 : collectNum = collectNum
+                  collecterUser.remove(collecterUser[i])
+                  result[0].set("collecter", collecterUser)
+                  result[0].set("collectNum", collectNum)
+                  // result[0].set('is_liked','0')
+
+                  // result[0].save()
+                  isLiked = true
+                  that.setData({
+                    isLiked: isLiked
+                  })
+                  wx.showToast({
+                    title: '已取消收藏',
+                    icon: 'success',
+                    duration: 2000
+                  })
+                  break
+                }
+              }
+              if (isLiked == false) {
+                // console.log('当前的用户还不在收藏的列表里')//添加进来新的用户
+                var newUser = new Object()
+                newUser.collecter = current_id
+                newUser.likedimg = '../../images/icon/praise_orange@3x.png'
+                newUser.is_liked = 1
+                collectNum = collectNum + 1
+                collecterUser.push(newUser)
+
+                result[0].set("collecter", collecterUser)
+                result[0].set("collectNum", collectNum)
+                wx.showToast({
+                  title: '已收藏',
+                  icon: 'success',
+                  duration: 2000
+                })
+              }
+
+            } else {
+              var newUser = new Object()
+              newUser.collecter = current_id
+              newUser.likedimg = '../../images/icon/praise_orange@3x.png'
+              newUser.is_liked = 1
+              collectNum = collectNum + 1
+              collecterUser.push(newUser)
+              result[0].set("collecter", collecterUser)
+              result[0].set("collectNum", collectNum)
+              wx.showToast({
+                title: '已收藏',
+                icon: 'success',
+                duration: 2000
+              })
+            }
+
+            result[0].save()
+          },
+          error: function (result, error) {
+            console.log("查询失败");
+          }
+        });
+      },
+    })
   }
 
 })
@@ -521,31 +630,40 @@ function getcard(that, arg) {
 
   var querycard = new Bmob.Query(card)
 
-  querycard.equalTo("publisher", user_id)//
+  querycard.equalTo("author", user_id)//
   querycard.find({
     success: function (res) {
       console.log(res)
       var a = [];
       var cards = []
       for (var i = 0; i < res.length; i++) {
+
+        console.log(res[i])
         var jsonA = {}
-        jsonA.author = res[i].get("author");
+        jsonA.author = res[i].get("author_name");
+        var name = res[i].get("author").get("username");
+        console.log(name)
         jsonA.title = res[i].get('title')
-        jsonA.content = res[i].get("content")
+        jsonA.content = res[i].get("brand")
         jsonA.case_name = res[i].get("case_name")
+        jsonA.liked = res[i].get("collectNum")
+        var wordlimit = jsonA.content.length
+        var limit
+        wordlimit < 66?  limit = true: limit =false
+        console.log(wordlimit)
+        jsonA.limit = limit
         jsonA.id = res[i].id
         var pic = res[i].get('pic');
         if (pic) {
           jsonA.pic = res[i].get('pic')._url
         } else {
           jsonA.pic = '../../images/weekly.jpg'
-
         }
       
         // jsonA.author = res[i].get('publisher')
 
 
-        console.log(jsonA)
+        // console.log(jsonA)
         cards.push(jsonA)
 
         // console.log(jsonA.url)
@@ -566,7 +684,6 @@ function getcollect(that, arg) {
   var card = Bmob.Object.extend(arg)
 
   var querycard = new Bmob.Query(card)
-      querycard
 
 
   wx.getStorage({
@@ -575,7 +692,6 @@ function getcollect(that, arg) {
 
       if (ress.data) {
         var my_username = ress.data;
-
         wx.getStorage({
           // key: 'user_openid',
           key:'user_id',
@@ -586,14 +702,13 @@ function getcollect(that, arg) {
               success: function(alldata){
                   console.log(alldata)
                   var newcardArr = []
-
                   for(var n = 0 ; n < alldata.length; n++){
                     if (alldata[n].get('collecter').length !== 0 ){
-                      console.log(alldata[n].get('collecter'))
-
+                      // console.log(alldata[n].get('collecter'))
                       var collecter = alldata[n].get('collecter')
 
                       for (var coll_i = 0; coll_i < collecter.length; coll_i ++ ){
+
                         if(collecter[coll_i].collecter == openid){
                           var jsonA = {}
                           jsonA.author = alldata[n].get('author_name')
@@ -602,6 +717,13 @@ function getcollect(that, arg) {
                           jsonA.case_name = alldata[n].get("case_name")
                           jsonA.liked = alldata[n].get("collectNum")
                           jsonA.id = alldata[n].id
+                          jsonA.is_liked = collecter[coll_i].is_liked
+                          console.log(jsonA.is_liked)
+                          var wordlimit = jsonA.content.length
+                          var limit
+                          wordlimit < 66 ? limit = true : limit = false
+                          // console.log(wordlimit)
+                          jsonA.limit = limit
                           var pic = alldata[n].get('pic');
                         if (pic) {
                           jsonA.pic = alldata[n].get('pic')._url
