@@ -14,11 +14,8 @@ App({
         var currentUser =  Bmob.User.current();
         // console.log(Bmob.User)
         that.setData({
-          userName:currentUser.nickname
-          
+          userName:currentUser.nickname 
         })
-
-        // console.log(that.data.userName)
       }
       else {
         wx.login({
@@ -111,7 +108,6 @@ App({
         wx.login()
       }
     })
-
   },
   onShow: function () {
 

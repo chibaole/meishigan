@@ -1,22 +1,4 @@
 <!--index.wxml-->
-  <!-- <view class="js_dialog" id="androidDialog1" style="opacity: 1;">
-    <view class="weui-mask"></view>
-    <view class="weui-dialog weui-skin_android">
-      <view class="writeName">修改昵称</view>
-      <view class="inputName">
-        <input bindblur="bindBlur" type="text" value="{{userName}}" name="changeNick" />
-      </view>
-      <view class="choose">
-        <view>选择你的个性标签</view>
-        <text wx:for="{{myInfo.labels}}">{{item.labText}}</text>
-      </view>
-      <view class="join-title">输入研究院的邀请码</view>
-      <view class="forCode">
-        <input type="text" />
-      </view>
-      <view class="confirm" bindtap="confirm">确定</view>
-    </view>
-  </view> -->
 
 <view class='page'>
   <view class='avatar'>

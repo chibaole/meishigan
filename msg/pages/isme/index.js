@@ -20,7 +20,8 @@ Page({
       labels: []
     },
     my_success: [
-    ]
+    ],
+    curitem :'achievement'
   },
 
   /**
@@ -204,43 +205,7 @@ Page({
     that = this;
     console.log(e.detail.value);
     console.log(e)
-    // wx.getStorage({
-    //   key: 'my_username',
-    //   success: function (ress) {
-    //     if (ress.data) {
-    //       var my_username = ress.data;
-    //       wx.getStorage({
-    //         key: 'user_openid',
-    //         success: function (openid) {
-    //           var openid = openid.data;
-    //           var user = Bmob.User.logIn(my_username, openid, {
-    //             success: function (users) {
-    //               users.set('nickname', e.detail.value);  // attempt to change username
-    //               users.save(null, {
-    //                 success: function (user) {
-    //                   wx.setStorageSync('my_nick', e.detail.value);
-    //                   that.setData({
-    //                     userName: e.detail.value,
-    //                   })
-    //                   common.dataLoading("修改昵称成功", "success");
-    //                 },
-    //                 error: function (error) {
-    //                   common.dataLoading(res.data.error, "loading");
-    //                   that.setData({
-    //                     inputValue: that.data.userName
-    //                   })
-    //                 }
-    //               });
-    //             }
-    //           });
-    //           console.log(user)
-    //         }, function(error) {
-    //           console.log(error);
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
+    
   },
   formSubmit(e) {
     console.log(e.detail.value.input)
@@ -250,35 +215,7 @@ Page({
     var user = Bmob.Object.extend("_User")
     var query = new Bmob.Query(user)
     console.log(value)
-    // wx.getStorage({
-    //   key: 'user_id',
-    //   success: function (ress) {
-    //     console.log(ress)
-    //     if (ress.data) {
-    //       var isme = new Bmob.User();
-    //       isme.id = ress.data;//此为objectid
-    //       // console.log(isme.id)
-    //       query.equalTo("objectId", isme.id);
-    //       query.find({
-    //         success: function (results) {
-    //           console.log(results)
-    //           var init_invite = results[0].attributes.init_inviteCode//预设的邀请码
-    //           console.log(init_invite)
-    //           if (input_invite_code === init_invite) {//比较输入的邀请码和预设的是否相等
-    //             common.dataLoading("欢迎您加入我们", "success");
-    //             that.setData({
-    //               invite_code: false
-    //             })
-    //           } else {
-    //             that.setData({
-    //               codeword: '你的邀请码有误，请核实后再输或者点击“没有”以游客身份登录'
-    //             })
-    //           }
-    //         }
-    //       });
-    //     }
-    //   }
-    // })
+    
     wx.getStorage({
       key: 'my_username',
       success: function (ress) {
@@ -294,6 +231,8 @@ Page({
 
                   console.log(users)
                   var init_invite = users.get('init_inviteCode')
+                  console.log(init_invite)
+                  console.log(input_invite_code)
                   if (input_invite_code == init_invite ){
                       users.set('type','研究员')
                       users.set('invite_code',init_invite)
@@ -306,8 +245,15 @@ Page({
                         }
                       })
                   }else{
-                    that.setData({
-                      invite_code: true
+                    users.set('type', '游客')
+                    users.set('invite_code',input_invite_code)
+                    users.save(null, {
+                      success: function () {
+                        console.log('邀请码成功匹配失败')
+                        that.setData({
+                          invite_code: false
+                        })
+                      }
                     })
                   }
                   // if (users.get('invite_code') === invitation) {
@@ -653,6 +599,28 @@ function getcard(that, arg) {
         console.log(wordlimit)
         jsonA.limit = limit
         jsonA.id = res[i].id
+
+
+        var author_id = res[i].get("author").id
+        console.log(author_id)
+      
+
+
+        var Diary = Bmob.Object.extend("_User");
+        var query = new Bmob.Query(Diary);
+        var author_avatar 
+        query.equalTo("objectId", author_id); 
+        query.find({
+          success:function(resss){
+            // console.log(resss)
+            author_avatar = resss[0].get("userPic")
+            // console.log(resss[0].get("userPic"))
+            author_avatar == undefined ? author_avatar = '../../images/weapp.jpg' : author_avatar = resss[0].get("userPic")
+            jsonA.author_avatar = author_avatar
+            // console.log(jsonA.author_avatar)
+          }
+        })
+
         var pic = res[i].get('pic');
         if (pic) {
           jsonA.pic = res[i].get('pic')._url
@@ -663,7 +631,7 @@ function getcard(that, arg) {
         // jsonA.author = res[i].get('publisher')
 
 
-        // console.log(jsonA)
+        console.log(jsonA)
         cards.push(jsonA)
 
         // console.log(jsonA.url)
@@ -724,6 +692,10 @@ function getcollect(that, arg) {
                           wordlimit < 66 ? limit = true : limit = false
                           // console.log(wordlimit)
                           jsonA.limit = limit
+                          var author_avatar
+                          alldata[n].get("author") != undefined ? author_avatar = alldata[n].get("author").get("userPic") : author_avatar = undefined
+                          author_avatar == undefined ? author_avatar = '../../images/weapp.jpg' : author_avatar = author_avatar
+                          jsonA.author_avatar = author_avatar
                           var pic = alldata[n].get('pic');
                         if (pic) {
                           jsonA.pic = alldata[n].get('pic')._url

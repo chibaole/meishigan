@@ -10,7 +10,7 @@
     <text>{{mytheme}}</text>
     <view class='confirm_box'>
       <view class='confirm' bindtap='confirm'> 
-        <image mode='aspectFit' src="../../images/newdrop.png"></image>
+        <image mode='aspectFit' src="../../images/drop-down@3x.png"></image>
       </view> 
     </view>
   </view>

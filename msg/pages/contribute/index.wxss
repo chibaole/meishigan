@@ -46,12 +46,10 @@ view {
   opacity: 0.5;
   transform: rotate(0deg);
   background: #D8D8D8; 
-  /* border: 1rpx solid #313131; */
-  /* margin-top: 25rpx; */
-   position: absolute;
+  position: absolute;
   top:34rpx; 
   right: 40rpx;
-/* display: none; */
+/* border: 4rpx solid #878787; */
 }
 .confirm image{
   height: 34rpx;width: 34rpx;
@@ -151,15 +149,21 @@ box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
 .addConent textarea {
   width: 630rpx;
   font-size: 28rpx;
-  margin: 20rpx auto;
+  margin: 0rpx auto;
   text-align: left;
   color: #313131;
   height: 500rpx;
+  /* border: 1rpx solid #000; */
+
+  font-family: PingFangSC-Light;
+letter-spacing: 0;
+line-height: 40rpx;
 }
 
 .addConent {
   min-height: 400rpx;
   /* margin-top: 20rpx; */
+  padding-top: 40rpx;
 }
 
 label {
@@ -181,14 +185,17 @@ label {
 
 
 .image_box {
-  width: 24%;
+  width: 160rpx;
   height: 160rpx;
   display: inline-block;
   /* margin-right: 20rpx; */
-  margin-right: 5rpx;
+  margin-right: 19rpx;
    /* border: 1rpx solid  #000;  */
 }
+.image_box:nth-child(4n+4){
+    margin-right: 0rpx;
 
+}
 .picPre {
   width: 100%;
     height: 160rpx;
@@ -205,12 +212,12 @@ label {
 } 
 
 .picPre view {
-   position: absolute; 
-  right: 0px;
-  top: -20rpx;
-  width: 15px;
-  height: 15px;
-  background: url(http://oxnbz75b8.bkt.clouddn.com/clear.png) no-repeat;
+  position: absolute; 
+  right: 8rpx;
+  top: 8rpx;
+  width: 53rpx;
+  height: 53rpx;
+  background: url(http://oxnbz75b8.bkt.clouddn.com/deleting@3x.png) no-repeat;
   background-size: cover;
 }
 

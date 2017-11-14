@@ -31,7 +31,6 @@ Page({
     id: 1,
     likedimg: '../../images/icon/praise_orange@3x.png',
     praise_img: '../../images/icon/praise_gray@3x.png',
-
     nolikedimg: '../../images/icon/praise_gray@3x.png',
     picUrl: '../../images/weekly.jpg',
     isHid: true,
@@ -40,15 +39,16 @@ Page({
     show_more: true,
     show_word: '查看全文',
     collect: [],
-    isLiked:false,
+    isLiked: false,
     likednum: 0,
-    agree:0,
-    modul:'card'
+    agree: 0,
+    modul: 'card'
   },
- 
+
   onLoad: function (options) {
     // console.log('加载页面')
     // console.log(Bmob.sendMasterMessage)
+
 
     var that = this
     var userInfo;
@@ -71,21 +71,47 @@ Page({
 
     wx.getStorage({
       key: 'user_id',
-      success: function(res) {
+      success: function (res) {
         // console.log(res.data)
         collecterid = res.data
         that.setData({
-          currentUserid:res.data
+          currentUserid: res.data
         })
       },
     })
-    that.getData()
+
   },
 
   // 1、获取数先 2、处理显示 3、
 
   onShow: function () {
-    this.getData()
+    that = this
+    var Diary = Bmob.Object.extend("card");
+    var query = new Bmob.Query(Diary);
+    // 只返回score和playerName字段值
+    query.select("module");
+    query.find().then(function (results) {
+      // 返回成功
+      // console.log(results)
+      var arr_module = []
+
+      for (var i = 0; i < results.length; i++) {
+        if (results[i].get('module') !== ''){
+          arr_module.push(results[i].get('module'))
+        }
+       
+      }
+      // console.log(arr_module)
+      var init_module = Array.from(new Set(arr_module))
+      console.log(init_module)
+      that.setData({
+        module: init_module
+      })
+      var init_arg = that.data.module[1]
+      console.log(that.data.module)
+      that.getData(init_arg)
+    });
+
   },
   onShareAppMessage: function (res) {
 
@@ -99,7 +125,7 @@ Page({
     return {
       title: '吃饱了没事干',
       path: path,
-      imageUrl:'../../images/weapp.jpg',
+      imageUrl: '../../images/weapp.jpg',
       success: function (res) {
         // 转发成功
       },
@@ -111,38 +137,61 @@ Page({
   getData: function (arg) {
     that = this
     var Dirary
-    // console.log(arg)
-    if (arg !== undefined) {
-      Dirary = Bmob.Object.extend(arg)
-    } else {
-      Dirary = Bmob.Object.extend("card")
-    }
+    console.log(arg)
+    Dirary = Bmob.Object.extend("card")
     var query = new Bmob.Query(Dirary)
     query.include("author");
+    if (arg !== undefined) {
+      query.equalTo('module', arg)
+    } else {
+      query.equalTo('module', '最新热门研究成果')
+    }
     var limit = that.data.limit
     var pageSize = that.data.pageSize
+
     query.find({
       success: function (res) {
-        // console.log(res)//所有的card／module0
+        console.log(res)//所有的card／module0
         var bar_titles = []
         var jsonAs = []
         var jsonA = {}
         for (var i = 0; i < res.length; i++) {
           var bar_title = res[i].get('bar_titles')
           var title = res[i].get("title")
+          // console.log(title)
+          title == "''" ? title = "" : title = title
+          // console.log(title)
+          var pic 
+
+          // if (res[i].get('pic') != undefined && res[i].get('pic')._url != undefined) {
+          //   pic = res[i].get('pic')._url
+          // }
+          console.log(res[i].get('pic'))
+          if (res[i].get('pic') !== undefined){
+            console.log(i)
+            pic = res[i].get('pic')._url
+          }else{
+            pic  = undefined
+          }
           var author = res[i].get("author")
-          var publisherId = res[i].get("author").id
+          var publisherId
+          res[i].get("author") != undefined ? publisherId = res[i].get("author").id : publisherId = ""
           var brand = res[i].get("brand")
           var wordlimit;
           // console.log(brand.length)
           brand.length < 65 ? wordlimit = false : wordlimit = true
           var case_name = res[i].get("case_name")
-          var liked = res[i].get("liked")
+          // var liked = res[i].get("liked")
           var likeNum = res[i].get("likeNum")
-          var name = res[i].get("author").get("nickname");
+          var name 
+          res[i].get("author") != undefined ? name = res[i].get("author").nickname : name = '没事干' 
+
+          var author_name = res[i].get("author_name") 
           // console.log(res[i].get("author"))
-          var avatar = res[i].get("author").get("userPic");
-          var likedimg ;
+          var avatar 
+
+          res[i].get("author") != undefined ? avatar = res[i].get("author").get("userPic") : avatar = ""
+          var likedimg;
           var id = res[i].id
           if (res[i].get('collectNum') < 1) {
             var collectNum = 1
@@ -150,13 +199,14 @@ Page({
             var collectNum = res[i].get('collectNum')
           }
 
-          var is_liked ; 
+          var is_liked;
           var collecters = res[i].get("collecter")
-          for(var s = 0; s < collecters.length; s ++){
-            if (collecters[s].collecter == collecterid ){
+         
+          for (var s = 0; s < collecters.length; s++) {
+            if (collecters[s].collecter == collecterid) {
               likedimg = collecters[s].likedimg
               is_liked = collecters[s].is_liked
-            }else{
+            } else {
               likedimg = "../../images/icon/praise_gray@3x.png"
               is_liked = 0
             }
@@ -166,18 +216,20 @@ Page({
             "bar_title": bar_title,
             "title": title,
             "author": name || '没事干',
+            "author_name": author_name || '没事干',
             "author_avatar": avatar || "../../images/weapp.jpg",
             "brand": brand,
             "case_name": case_name || '',
-            "liked": liked,
             "likeNum": likeNum,
             "id": id,
             "likedimg": likedimg || 'http://oxnbz75b8.bkt.clouddn.com/praise_gray@3x.png',
             "is_liked": is_liked || 0,
-            "wordlimit":wordlimit
+            "wordlimit": wordlimit,
+            "pic":pic || ''
           }
           bar_titles.push(bar_title)
           jsonAs.push(jsonA)
+          // console.log(jsonA)
         }
         let newbar = Array.from(new Set(bar_titles));
         var arrs = []
@@ -210,7 +262,7 @@ Page({
             "data": init_resdata,
             "title": teptitle,
             "isHid": false,
-            "label_url": '../../images/first/labelling_an_dark.png'
+            "label_url": '../../images/first/labelling_orange.png'
           }
           arr1 = {
             "data": orgdata,
@@ -222,7 +274,7 @@ Page({
         }
         arrs[0].isHid = true
 
-        arrs[0].label_url = '../../images/first/labelling_orange.png'
+        arrs[0].label_url = '../../images/first/labelling_an_dark.png '
 
 
         resdata = {
@@ -253,11 +305,11 @@ Page({
     for (var i = 0; i < data.length; i++) {
       if (title == data[i].title && data[i].isHid == false) {
         data[i].isHid = true
-        data[i].label_url = '../../images/first/labelling_orange.png'
+        data[i].label_url = '../../images/first/labelling_an_dark.png '
         current_index = i
       } else if (title == data[i].title && data[i].isHid == true) {
         data[i].isHid = false,
-          data[i].label_url = '../../images/first/labelling_an_dark.png'
+          data[i].label_url = '../../images/first/labelling_orange.png'
       }
     }
     // console.log(current_index)
@@ -266,9 +318,7 @@ Page({
       resdata: that.data.resdata,
       limit: that.data.limit
     })
-    // wx.pageScrollTo({
-    //   scrollTop: 1100
-    // })
+
     console.log(that.data.resdata)
   },
 
@@ -294,7 +344,7 @@ Page({
 
     var limitdata = that.data.resdata.orgdata[current_index].data
 
-  
+
 
     var result = limitdata.slice(0, limit)
     that.data.resdata.resdata[current_index].data = result
@@ -307,14 +357,14 @@ Page({
   select_module: function (e) {
     that = this
     // console.log(e.currentTarget.dataset)
-    var model = e.currentTarget.dataset.mod
-    // console.log(model)
-    that.setData({
-      modul: model
-    })
-    that.getData(model)
+    var module = e.currentTarget.dataset.mod
+    console.log(module)
+    // that.setData({
+    //   modul: model
+    // })
 
 
+    that.getData(module)
   },
   clip(options) {
     // console.log('点击了复制')
@@ -340,15 +390,12 @@ Page({
     })
 
   },
-
- 
-
   showall: function (e) {
     //显示全文函数
     that = this
     var id = e.currentTarget.dataset.showall
     var show_word = that.data.show_word
-    
+
     // console.log(id)
     //控制显示样式
 
@@ -367,30 +414,23 @@ Page({
 
     }
   },
-  gotourl: function (e) {
-    var url = e.currentTarget.dataset.url
-    // console.log(e)
-    wx.redirectTo({
-      url: url
-    })
-  },
-  goother:function(){
+
+  goother: function () {
     wx.navigateTo({
       url: '../other/index',
     })
   },
 
-  chang_img:function(e){
+  chang_img: function (e) {
     that = this
-    var modul = that.data.modul
-    modul == undefined? 'card': modul
+  
     var itemid = e.currentTarget.dataset.cardid
-    var Card = Bmob.Object.extend(modul);
+    var Card = Bmob.Object.extend('card');
     var query = new Bmob.Query(Card);
     query.equalTo("objectId", itemid)
     wx.getStorage({
       key: 'user_id',
-      success: function(res) {
+      success: function (res) {
         // console.log(res.data)
         var current_id = res.data
         var isLiked = false
@@ -400,17 +440,19 @@ Page({
             // console.log(result);
             var collectNum = result[0].get('collectNum')
             var collecterUser = result[0].get('collecter')
-            if(collecterUser.length > 0){
+            // console.log(collecterUser.length)
+            console.log(collecterUser)
+            if (collecterUser.length > 0) {
               // console.log('本文章已经有收藏的人了')
-              for(var i = 0 ;i < collecterUser.length; i++){
+              for (var i = 0; i < collecterUser.length; i++) {
                 // console.log(collecterUser[i].collecter )
-                if (collecterUser[i].collecter == current_id){
+                if (collecterUser[i].collecter == current_id) {
                   // console.log('这个用户已在收藏者列表')//删除此用户
 
                   collectNum = collectNum - 1
                   collectNum < 0 ? collectNum = 1 : collectNum = collectNum
                   collecterUser.remove(collecterUser[i])
-                  result[0].set("collecter",collecterUser)
+                  result[0].set("collecter", collecterUser)
                   result[0].set("collectNum", collectNum)
                   // result[0].set('is_liked','0')
 
@@ -446,7 +488,7 @@ Page({
                 })
               }
 
-            }else{
+            } else {
               var newUser = new Object()
               newUser.collecter = current_id
               newUser.likedimg = '../../images/icon/praise_orange@3x.png'
@@ -462,13 +504,14 @@ Page({
               })
             }
 
-            result[0].save() 
+            result[0].save()
+            console.log('ok')
           },
           error: function (result, error) {
             console.log("查询失败");
           }
-        }); 
+        });
       },
-    }) 
+    })
   }
 })

@@ -1,63 +1,59 @@
 <!--index.wxml-->
 
-<scroll-view class='page' scroll-x='true' scroll-y='true'>
-  <scroll-view class='header' scroll-x='true' scroll-y='true' >
-      <!-- <view class='logo'><image src='../../images/icon/logo@3x.png'></image></view> -->
-      <view class="item-container">
+<view  scroll-y	 class='page'>
 
-        <view class='item' hover-class='item_bgc' bindtap='select_module' data-mod='card' data-label='labels'>
-          <view class='item-text'>
-            <text>最新热门研究成果</text>
-          </view>
-        </view>
-        <view class='item' hover-class='item_bgc' bindtap='select_module' data-mod='taobaobuy' data-label='modLabel'>
-          <view class='item-text'>
-            <text>研究员在买什么</text>
-          </view>
+  <scroll-view class="header" scroll-x style="width: 100%">
+    <!-- <view class='logo'><image src='../../images/icon/logo@3x.png'></image></view> -->
+    <view class="item-container">
+      <view class='item' wx:for='{{module}}' hover-class='item_bgc' bindtap='select_module' data-mod='{{item}}' data-label='labels'>
+        <view class='item-text'>
+          <text>{{item}}</text>
         </view>
       </view>
+    </view>
   </scroll-view>
+
   <block wx:for="{{resdata.resdata}}" wx:for-item="data">
-    <view class='title-bar' bindtap='show_bar_title' data-title='{{data.title}}' data-isHid='{{data.isHid}}' data-count='{{data.data.length}}'><image src='{{data.label_url}}'></image> {{data.title}}</view>
+    <view class='title-bar' bindtap='show_bar_title' data-title='{{data.title}}' data-isHid='{{data.isHid}}' data-count='{{data.data.length}}'>
+      <image src='{{data.label_url}}'></image>{{data.title}}</view>
     <!-- <view class='art' wx:for="{{onlydata.data}}" wx:if="{{onlydata.isHid}}"> -->
     <view class='art' wx:for="{{data.data}}" wx:if="{{data.isHid}}" data-id='{{item.id}}'>
-      <image class='card_pic' wx:if="{{picUrl}}"  src='{{picUrl}}' mode='aspectFill'></image>
+      <image class='card_pic' wx:if="{{item.pic}}" src='{{item.pic}}' mode='aspectFill'></image>
       <view class='art-title'>{{item.title}}</view>
       <view class='{{item.id === classid ? "show_all":"art-text"}}' data-classid='{{item.id}}'>
         {{item.brand}}
       </view>
       <text class='{{item.wordlimit == true ?"showall":"noshowall"}}' bindtap='showall' data-showall='{{item.id}}'>{{classid === item.id?show_word:"查看全文"}}</text>
+
+
       <!--复制关键词  -->
-       <block wx:if="{{item.case_name}}">
+      <block wx:if="{{item.case_name}}">
         <view class='case-name'>
           <text selectable='true'>{{item.case_name}}</text>
           <image src='../../images/first/replication_orange@3x.png' data-id='{{item.id}}' data-clip_mod='{{item.clip_mod}}' data-case='{{item.case_name}}' bindtap='clip'></image>
         </view>
-      </block>   
-    
+      </block>
+
       <view class='clear'></view>
+
       <view class='tools'>
-        <view class='new_authuor' bindtap='goother' >
-           <image src='{{item.author_avatar}}'></image>
-          <text>{{item.author}}</text> 
-        </view> 
-      
-         <button class='i_love'  bindtap='chang_img' data-cardID='{{item.id}}' data-index='{{index}}' >
-         <!--收藏的图标  -->
-
-            <!-- <image src='{{item.likedimg == likedimg ? praise_img:likedimg }}'></image>   -->
+        <!-- <view class='new_authuor' bindtap='goother' > -->
+        <view class='new_authuor'>
+          <image src='{{item.author_avatar}}'></image>
+          <text>{{item.author_name}}</text>
+        </view>
+        <button class='i_love' bindtap='chang_img' data-cardID='{{item.id}}' data-index='{{index}}'>
+          <!--收藏的图标  -->
+          <!-- <image src='{{item.likedimg == likedimg ? praise_img:likedimg }}'></image>   -->
           <!-- <image src='{{praise_img}}'></image> -->
-           <view class='image{{item.is_liked}}'></view> 
-
-          <view class='likedNum'><text>{{item.collectNum}}</text></view>
+          <view class='image{{item.is_liked}}'></view>
+          <!-- <view class='likedNum'>999</view>   -->
+          <view class='likedNum'>
+            <text>{{item.collectNum}}</text>
+          </view>
         </button>
-        <!-- <button class='share' bindtap='share'  open-type='share' data-user='100100' data-collecter='{{item}}'>
-            <image src='../../images/first/sharing_gray@3x.png'></image>  
-        </button>  -->
-
       </view>
+
     </view>
   </block>
-
-</scroll-view>
-<!-- <view>{{liked}}</view> -->
+</view>

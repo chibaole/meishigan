@@ -19,30 +19,30 @@ var common = require('../../../utils/common.js')
 var mylabel
 var that;
 Page({
-  
+
 
   /**
    * 页面的初始数据
    */
   data: {
-    labels:['电话费','回家','干一宿','好次诋毁森岛宽晃','没的打飞机','们的深深的','深度','快结束的','水淀粉'],
-    activeltemIndex:'',
+    labels: ['电话费', '回家', '干一宿', '好次诋毁森岛宽晃', '没的打飞机', '们的深深的', '深度', '快结束的', '水淀粉'],
+    activeltemIndex: '',
     label: [],
-   
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
@@ -76,14 +76,12 @@ Page({
               var openid = openid.data;
               var user = Bmob.User.logIn(my_username, openid, {
                 success: function (users) {
-                  console.log(users)
                   var oldNickname = users.get('nickname')
                   var invite = users.get('invite_code')
                   var currentlabel = users.get('label')
-
+                  mylabel = currentlabel
                   var Label = Bmob.Object.extend("foodieLabel");
                   var Labelquery = new Bmob.Query(Label);
-
                   Labelquery.find({
                     success: function (orglabel) {
                       // console.log(orglabel)
@@ -101,7 +99,7 @@ Page({
                         initlabel.push(jsonL)
 
                       }
-                 
+
                       for (var ii = 0; ii < initlabel.length; ii++) {
                         console.log('第一次循环')
                         for (var jj = 0; jj < currentlabel.length; jj++) {
@@ -112,9 +110,9 @@ Page({
                           }
                         }
                       }
-                    that.setData({
-                      label:initlabel
-                    })
+                      that.setData({
+                        label: initlabel
+                      })
                       console.log(initlabel)
                     }
                   })
@@ -124,14 +122,12 @@ Page({
                     that.setData({
                       oldNickname: oldNickname,
                       uninput: true
-                      
                     })
                   } else {
                     that.setData({
                       oldNickname: oldNickname,
                       uninput: false,
                       label: initlabel
-
                     })
                   }
                 }
@@ -151,10 +147,8 @@ Page({
     console.log(e)
     that = this;
     var newname = e.detail.value.nickname//修改的呢称
-    var invitation =   e.detail.value.invitation//邀请码
-    // console.log(newname,invitation)
-    // console.log(mylabel)//选择的吃货标签
-
+    var invitation = e.detail.value.invitation//邀请码
+    // console.log(invitation)
     wx.getStorage({
       key: 'my_username',
       success: function (ress) {
@@ -166,48 +160,42 @@ Page({
               var openid = openid.data;
               var user = Bmob.User.logIn(my_username, openid, {
                 success: function (users) {
-                  if (users.get('invite_code') === invitation){
-                        if (newname === ''){
-                          // users.set('nickname', n); 
-                        }else{
-                          users.set('nickname', newname); 
-                        }
-                        users.set('type','研究员') // attempt to change username
 
-
-                        users.set('label',mylabel)
-                        users.save(null, {
-                          success: function (user) {
-                            wx.setStorageSync('my_nick', e.detail.value.changeNick);
-                            that.setData({
-                              userName: that.data.inputValue,
-                              isModifyNick: false,
-                              isdisabled: false,
-                              modifyLoading: false
-                            })
-                            common.dataLoading("修改昵称成功", "success");
-                          },
-                          error: function (error) {
-                            that.setData({
-                              isModifyNick: false,
-                              isdisabled: false,
-                              modifyLoading: false,
-                              inputValue: that.data.userName
-                            })
-                          }
-                        });
-
-                  } else {
+                  console.log(mylabel)//
+                  if (users.get('invite_code') === invitation) {
                     users.set('nickname', newname);
+                    users.set('type', '研究员') // attempt to change username
+                    users.set('label', mylabel)
+                    users.save(null, {
+                      success: function (user) {
+                        wx.setStorageSync('my_nick', e.detail.value.changeNick);
+                        that.setData({
+                          userName: that.data.inputValue,
+                          isModifyNick: false,
+                          isdisabled: false,
+                          modifyLoading: false
+                        })
+                        common.dataLoading("修改昵称成功", "success");
+                      },
+                      error: function (error) {
+                        that.setData({
+                          isModifyNick: false,
+                          isdisabled: false,
+                          modifyLoading: false,
+                          inputValue: that.data.userName
+                        })
+                      }
+                    });
+                  } else {
 
-                    if(users.get(type) == '研究员'){
-                      return
-                    }else{
+
+                    users.set('nickname', newname);
+                    if (users.get('type') == '研究员') {
+                      users.set('type', '研究员');
+                    } else {
                       users.set('type', '游客')
                     }
-                     // attempt to change username
-
-
+                    // attempt to change username
                     users.set('label', mylabel)
                     users.save(null, {
                       success: function (user) {
@@ -243,56 +231,48 @@ Page({
       }
     })
 
-  // wx.switchTab({
-  //   url: '../index',
-  // }) 
-  console.log('跳转到首页')
-
-
+    // wx.switchTab({
+    //   url: '../index',
+    // }) 
+    // console.log('跳转到首页')
   },
-  test:function(e){
+  test: function (e) {
     var that = this
     var label = that.data.label
     var index = e.target.dataset.index
     var title = e.target.dataset.title
     var newarr = new Array()
-    console.log(label)
+    console.log(mylabel)
     console.log(e.target.dataset)
-    for(var i = 0 ;i < label.length; i++){
+    for (var i = 0; i < label.length; i++) {
       console.log(label[index])
-      if (label[index].change == false){
-          label[index].lab_class = 'active'
-          label[index].change = true
-      }else{
+      if (label[index].change == false) {
+        label[index].lab_class = 'active'
+        label[index].change = true
+      } else {
         label[index].lab_class = 'label'
         label[index].change = false
       }
       console.log(label[index])
       break
-
     }
-
     //更新数据
     that.setData({
-      label:label
+      label: label
     })
-
-// console.log(that.data.label)
-
-      //筛选出change = true 的数据
-      var orgdata = that.data.label
-      // console.log(orgdata.length)
-      for(var j = 0; j < orgdata.length; j++){
+    //筛选出change = true 的数据
+    var orgdata = that.data.label
+    // console.log(orgdata.length)
+    for (var j = 0; j < orgdata.length; j++) {
       // console.log(j)
-        if(orgdata[j].change === true){
-          newarr.push(orgdata[j])
-        }
+      if (orgdata[j].change === true) {
+        newarr.push(orgdata[j])
+        mylabel.push(orgdata[j])
       }
-      // console.log(newarr) //就是这个数据了
-
-      mylabel = newarr
+    }
+    // console.log(newarr) //就是这个数据了
       console.log(mylabel)
-
+      mylabel = newarr
   }
 })
 

@@ -13,7 +13,7 @@ view {
 .header {
   background-image: url("http://oxnbz75b8.bkt.clouddn.com/head_background.png");
   /* border: 1rpx solid #000; *//* height: 500rpx; *//* height: 276rpx; */
-  padding-top: 40rpx;
+  /* padding-top: 40rpx; */
 }
 
 .item-container {
@@ -21,37 +21,27 @@ view {
   width: 750rpx;
   font-size: 32rpx;
   color: #e0502c;
-  display: flex;
+  /* display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-around; */
   text-align: center;
-}
-
-.logo {
-  height: 90rpx;
-  width: 360rpx;
   /* border: 1rpx solid #000; */
-  margin: 0 auto;
-  opacity: 0.8;
-  background: #d8d8d8;
-}
-
-.logo image {
-  height: 90rpx;
-  width: 360rpx;
 }
 
 .item-container .item {
-  margin: 24rpx;
-  width: 290rpx;
+  display: inline-block;
+   margin: 30rpx 0;  
+  width: 320rpx;
   height: 90rpx;
   background: rgba(255, 255, 255, 0.15);
   border: 2rpx solid #fff;
 }
-
+.item-container .item:first-child{
+  margin-right:20rpx; 
+}
 .item .item-text {
-  /* border: 1px solid #000;  */
-  margin-top: 20rpx;
+   /* border: 1px solid #000;   */
+  margin-top: 28rpx;
   font-family: PingFangSC-Medium;
   font-size: 28rpx;
   color: #fff;
@@ -59,7 +49,7 @@ view {
 }
 
 .item-container .item text {
-  display: block;
+  /* display: block; */
 }
 
 /*-----  */
@@ -68,8 +58,8 @@ view {
   height: 40rpx;
   width: 40rpx;
   vertical-align: middle;
-  /* border: 1px solid #000; */
-  margin-right: 50rpx;
+   /* border: 1px solid #000;  */
+  margin-right: 52rpx;
   margin-bottom: 5rpx;
   margin-left: 40rpx;
 }
@@ -78,12 +68,13 @@ view {
   background: #fff;
   height: 120rpx;
   width: 712rpx;
-  margin: 10rpx auto;
+  margin: 20.4rpx auto 0;
   line-height: 120rpx;
   font-family: PingFangSC-Semibold;
   font-size: 30rpx;
   color: #454553;
   letter-spacing: 0.48rpx;
+  box-shadow: 0 2rpx 4rpx 0 rgba(0,0,0,0.05);
 }
 
 /*---------  */
@@ -93,19 +84,28 @@ view {
   border: 1rpx solid #f4dbd4;
   font-size: 28rpx;
   width: 712rpx;
-  margin: 4rpx auto 0;
+  margin: 20.4rpx auto 0;
+  padding-bottom: 40rpx;
 }
 
 .card_pic {
   height: 380rpx;
-  margin: 0 auto;
+  margin: 0 auto ;
+  /* border: 1rpx solid #000; */
+
 }
 
 .art-title {
-  color: #353541;
-  font-size: 32rpx;
+  font-size: 28rpx;
   margin-left: 38rpx;
-  margin-bottom: 30rpx;
+  margin-bottom: 26rpx;
+  margin-top:30rpx;
+  /* font-weight: bloder; */
+  font-family: PingFangSC-Medium;
+  color: #454553;
+  letter-spacing: 0;
+  line-height: 40rpx;
+  /* border: 1rpx solid #000; */
 }
 
 .art-text {
@@ -116,6 +116,10 @@ view {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   color: #747474;
+  font-family: PingFangSC-Light;
+  /* border: 1rpx solid #000; */
+
+
 }
 
 .show_all {
@@ -125,7 +129,11 @@ view {
 
 .showall {
   float: right;
-  margin-right: 60rpx;
+  margin-right: 44rpx;
+    font-family: PingFangSC-Medium;
+    color: #454553;
+    font-size: 28rpx;
+
 }
 .noshowall{
   display: none;
@@ -136,44 +144,53 @@ view {
 }
 
 .tools {
-  margin-top: 44rpx;
-  margin-bottom: 2rpx;
+  margin-top: 40rpx;
+  /* border: 1rpx solid #000; */
+  height: 50rpx;
 }
 
 .new_authuor {
   width: 40%;
-  height: 60rpx;
+  height: 50rpx;
   display: inline-block;
   margin-left: 40rpx;
-  margin-bottom: 24rpx;
+   position: relative;
+   /* border:1rpx solid blue; */
 }
 
 .new_authuor image {
   width: 50rpx;
   height: 50rpx;
   border-radius: 50%;
-  margin-right: 10rpx;
-  vertical-align: middle;
-  /* 一群傻逼 */
+  /* margin-right: 16rpx; */
+   
 }
 
 .new_authuor text {
   font-size: 28rpx;
   color: #747474;
+    line-height: 28rpx;
+  display: inline-block;
+  height: 30rpx;
+position: absolute;
+top:11rpx;left: 66rpx;
+  /* margin-top: rpx; */
+
 }
 
-.share, .i_love {
+ .i_love {
   background: #fff;
-  height: 60rpx;
+  height: 50rpx;
   display: inline-block;
-  width: 25%;
+  width: 20%;
   border-radius: 0;
-  margin-bottom: -15rpx;
+  margin-right: 20rpx;
+   /* border: 1rpx solid red;  */
+  position: relative;
+  
 }
 
 .i_love {
-  /* margin-left: 60rpx; 有分享按钮 */
-  /* border: 1rpx solid #353541; */
   margin-left: 195rpx;
 }
 
@@ -189,49 +206,50 @@ button::after {
   display: inline-block;
   width: 36rpx;
   height: 36rpx;
-  margin-bottom: 30rpx;
-  /* text-align: center; */
-  vertical-align: middle;
-  /* border: 1rpx solid #000;  */
+  position: absolute;
+  top:7rpx;
+  left: 0rpx;
 }
 
 .image0 {
   display: inline-block;
   width: 36rpx;
   height: 36rpx;
-  margin-bottom: 30rpx;
-  vertical-align: middle;
+  
+  /* vertical-align: middle; */
   background: url(http://oxnbz75b8.bkt.clouddn.com/praise_gray@3x.png) no-repeat;
   background-size: 36rpx 36rpx;
+    /* border: 1rpx  solid #000;   */
+  position: absolute;
+  top:7rpx;
+  right: 62rpx;
 }
 
 .image1 {
-  display: inline-block;
+    display: inline-block;
   width: 36rpx;
   height: 36rpx;
-  margin-bottom: 30rpx;
-  /* text-align: center; */
-  vertical-align: middle;
-  background: url(http://oxnbz75b8.bkt.clouddn.com/praise_orange@3x.png) no-repeat;
+  
+  /* vertical-align: middle; */
+  background: url(http://oxnbz75b8.bkt.clouddn.com/Heart.png) no-repeat;
   background-size: 36rpx 36rpx;
+   /* border: 1rpx  solid #000;  */
+  position: absolute;
+  top:7rpx;
+  right: 82rpx;
 }
 
 .likedNum {
   display: inline-block;
-  width: 60rpx;
-  height: 60rpx;
-  /* border: 1rpx solid #000; */
-}
-
-.likedNum text {
-  display: inline-block;
-  /* margin-bottom: 10rpx;  *//* border: 1px solid red;   */
-  font-size: 28rpx;
-  /* width: 30rpx; */
-  height: 30rpx;
-  line-height: 60rpx;
+  height: 36rpx;
+  /* min-width: 60rpx;  */
+      /* border: 1rpx solid #000;     */
   position: absolute;
-  top: 10rpx;
+  top: 7rpx;
+  right: 0;
+  line-height: 36rpx;
+  font-size: 28rpx;
+  text-align: right;
 }
 
 button::after {
@@ -255,17 +273,18 @@ button::after {
 
 .case-name {
   margin-left: 38rpx;
+  margin-top: 16rpx;
   width: 50%;
-  /* border: 1rpx solid #000; */
+  /* border: 1rpx solid #000;  */
 }
 
 .case-name text {
-  border-bottom: 2rpx #e0502c dashed;
+  border-bottom: 4rpx #e0502c dashed;
 }
 
 .case-name image {
-  width: 38rpx;
-  height: 38rpx;
+  width: 34rpx;
+  height: 32rpx;
   vertical-align: middle;
   margin-left: 8rpx;
 }

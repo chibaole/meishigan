@@ -34,7 +34,6 @@ top:48rpx;
 right: 0rpx;
 }
 .procress{
-
 position: absolute;
 top:81rpx;
 right: 335rpx;
@@ -61,7 +60,7 @@ width: 630rpx;
 height: 132rpx;
 margin-left: 40rpx;
 
-border-bottom: 1rpx solid #e3e9ec;
+border-bottom: 2rpx solid #e3e9ec;
 font-family: PingFangSC-Regular;
 font-size: 32rpx;
 color: #454553;

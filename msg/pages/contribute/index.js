@@ -181,17 +181,18 @@ Page({
 
   chosePic: function () {//选择图
     that = this;
-    var arr = that.data.srclist
+    var img_arr = that.data.srclist
 
+    console.log(img_arr.length)
 
-    setInterval(function () {
-      if (arr.length > 3) {
-        // arr = arr.slice(-3)
+    setInterval(function(){
+      if (img_arr.length > 3) {
         that.setData({
           max: false//超过三张 不能再添加图
         })
+
       }
-    }, 500)
+    },500)
     wx.chooseImage({
       count: 3, // 默认9
       sizeType: ['original', 'compressed'],
@@ -200,12 +201,12 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths
         // console.log(that.data.srclist)
-        arr = arr.concat(tempFilePaths)
+        img_arr = img_arr.concat(tempFilePaths)
         // console.log(arr)
         that.setData({
           isSrc: true,
           src: tempFilePaths,
-          srclist: arr
+          srclist: img_arr
         })
 
       },
@@ -223,11 +224,22 @@ Page({
 
     newarr.remove(e.currentTarget.dataset.src)
     console.log(newarr)
+    
+
+      if (newarr.length > 3) {
+        that.setData({
+          max: false//超过三张 不能再添加图
+        })
+      
+    }
     that.setData({
       isSrc: false,
       src: "",
       srclist: newarr
     })
+
+
+    
   },
 
   changePublic: function (e) {//switch开关
@@ -338,7 +350,6 @@ Page({
 
                 var file = new Bmob.File(name, tempFilePath);
 
-
                 file.save().then(function (res) {
                   wx.hideNavigationBarLoading()
                   var url = res.url();
@@ -356,16 +367,9 @@ Page({
                 }, function (error) {
                   console.log(error)
                 });
-
-
               }
-
-
             }
-
             draft.set("pic", file);
-
-
           }
           draft.save(null, {
             success: function (result) {
@@ -387,9 +391,12 @@ Page({
                   }
                 }
               })
-              wx.switchTab({
-                url: '../ALL/index',
-              })
+              setTimeout(function(){
+                wx.switchTab({
+                  url: '../ALL/index',
+                })
+              },1500)
+             
             },
             error: function (result, error) {
               // 添加失败

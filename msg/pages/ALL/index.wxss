@@ -18,7 +18,11 @@
   width: 710rpx;
   margin: 0 auto;
   position: relative;
-  border:1rpx  solid #f2f2f2;
+box-shadow: 0 2rpx 4rpx 0 rgba(0, 0, 0,.5);
+
+/* box-shadow: h-shadow v-shadow blur spread color inset; */
+
+ border: .1rpx solid rgba(255, 255, 255,0); 
 }
 .item{
   height: 150rpx;
@@ -47,13 +51,20 @@
 
 .item0{
   margin-top: 24rpx;
+  background: url(http://oxnbz75b8.bkt.clouddn.com/contribute.png) no-repeat;
+  background-size: 710rpx auto; 
+
+  
 }
 .item1{
-  margin-top: 16rpx;
-
+  margin-top: 20rpx;
+ background: url(http://oxnbz75b8.bkt.clouddn.com/about.png) no-repeat;
+  background-size: 710rpx auto; 
 }
 .item2{
-  margin-top: 16rpx;
+  margin-top: 20rpx;
+   background: url(http://oxnbz75b8.bkt.clouddn.com/list.png) no-repeat;
+  background-size: 710rpx auto; 
 }
 
 .mintext{
@@ -62,31 +73,3 @@
   color:#727272
 }
 
-
-/*每页的底部  */
-
-.foot{
-  height: 120rpx;
-  width: 100%;
-  background: #FFFFFF;
-box-shadow: -3px -3px 10px 0 rgba(69,69,83,0.05);
- /* border: 1rpx solid #000; */
- position: fixed;
- bottom: 0rpx;
-  /* display: none  */
-
-}
-
-.foot .tabbar{
-  display: inline-block;
-}
-.foot .tabbar image{
-  width: 52rpx;height: 52rpx;
-}
-
-.foot .tabbar2{
-  margin: 34rpx 175.5rpx;
-}
-.foot .tabbar1{
-  margin-left: 100rpx;
-}
